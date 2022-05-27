@@ -17,6 +17,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -86,7 +88,7 @@ export default function SamplePage() {
 
     const [checked, setChecked] = React.useState([true, false]);
     const handleChange1 = (event) => {
-        setChecked([event.target.checked, event.target.checked, event.target.checked]);
+        setChecked([event.target.checked, event.target.checked]);
     };
     const handleChange2 = (event) => {
         setChecked([event.target.checked, checked[1]]);
@@ -104,11 +106,15 @@ export default function SamplePage() {
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
-              height: 66
+              height: 66,
             }}
           >
+            <IconButton onClick={toggleDrawer} sx={{ mr: 1 }}>
+              {open ?<KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
+              {/* <KeyboardDoubleArrowLeftIcon /> */}
+            </IconButton>
           </Toolbar>
-          {/* <Divider /> */}
+          <Divider />
           <List component="nav">
             {secondaryListItems}
           </List>

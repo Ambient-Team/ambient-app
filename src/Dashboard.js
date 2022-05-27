@@ -63,7 +63,7 @@ const Search = styled('div')(({ theme }) => ({
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
+    marginLeft: theme.spacing(110),
     width: 'auto',
   },
 }));
@@ -87,7 +87,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '40ch',
+      width: '20ch',
     },
   },
 }));
@@ -292,7 +292,7 @@ function DashboardContent() {
             >
               Dashboard
             </Typography> */}
-            <Search sx={{flexGrow: 0.5, borderRadius: 25}}>
+            <Search sx={{flexGrow: 0, borderRadius: 25 }}>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -360,10 +360,10 @@ function DashboardContent() {
               height: 130
             }}
           >
-            <img src={Logo} alt="Logo" width={150} height={75} />
-            <IconButton onClick={toggleDrawer}>
+            <img src={Logo} alt="Logo" width={180} height={75}/>
+            {/* <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
           <Divider />
           <List component="nav">
