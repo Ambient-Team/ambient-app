@@ -1,7 +1,6 @@
 {
   "hosting": {
     "target": "ambient-1",
-    "site": "my-app-id",
     "public": "build",
     "ignore": [
       "firebase.json",
