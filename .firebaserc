@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ambient-systems"
+  },
+  "targets": {
+    "ambient-systems": {
+      "hosting": {
+        "ambient-1": [
+          "firebase.json"
+        ]
+      }
+    }
+  }
+}

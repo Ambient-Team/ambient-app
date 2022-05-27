@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "target": "ambient-1",
+    "site": "my-app-id",
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
