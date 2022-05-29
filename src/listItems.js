@@ -23,7 +23,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton>
-    <ButtonBase href='/' fullWidth>
+    <ButtonBase href='/Overview' fullWidth>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -31,7 +31,7 @@ export const mainListItems = (
     </ButtonBase>
     </ListItemButton>
     <ListItemButton>
-    <ButtonBase href='/sample' fullWidth>
+    <ButtonBase href='/Goal' fullWidth>
       <ListItemIcon>
         <TrackChangesIcon />
       </ListItemIcon>
@@ -39,34 +39,44 @@ export const mainListItems = (
     </ButtonBase>
     </ListItemButton>
     <ListItemButton>
+    <ButtonBase href='/Engineering' fullWidth>
       <ListItemIcon>
         <StorageIcon />
       </ListItemIcon>
-      <ListItemText primary="Data Feeds" />
+      <ListItemText primary="Data Engineering" />
+      </ButtonBase>
     </ListItemButton>
     <ListItemButton>
+    <ButtonBase href='/Visualization' fullWidth>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Analytics" />
+      <ListItemText primary="Data Visualization" />
+    </ButtonBase>
     </ListItemButton>
     <ListItemButton>
+    <ButtonBase href='/ML' fullWidth>
       <ListItemIcon>
         <AccountTreeIcon />
       </ListItemIcon>
-      <ListItemText primary="Models" />
+      <ListItemText primary="Machine Learning" />
+      </ButtonBase>
     </ListItemButton>
     <ListItemButton>
+    <ButtonBase href='/Output' fullWidth>
       <ListItemIcon>
         <FolderIcon />
       </ListItemIcon>
       <ListItemText primary="Output" />
+      </ButtonBase>
     </ListItemButton>
     <ListItemButton>
+    <ButtonBase href='/Profile' fullWidth>
       <ListItemIcon>
         <PersonIcon />
       </ListItemIcon>
       <ListItemText primary="Profile" />
+      </ButtonBase>
     </ListItemButton>
   </React.Fragment>
 );
@@ -80,19 +90,111 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Current month" />
+      <ListItemText primary="Data Connectors" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Last quarter" />
+      <ListItemText primary="TBD" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
+      <ListItemText primary="TBD" />
+    </ListItemButton>
+  </React.Fragment>
+);
+
+export const thirdListItems = (
+  <React.Fragment>
+    {/* <ListSubheader component="div" inset>
+      Sub-bar
+    </ListSubheader> */}
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Dashboard" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="TBD" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="TBD" />
+    </ListItemButton>
+  </React.Fragment>
+);
+
+export const fourthListItems = (
+  <React.Fragment>
+    {/* <ListSubheader component="div" inset>
+      Sub-bar
+    </ListSubheader> */}
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Relation Discovery" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="TBD" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="TBD" />
+    </ListItemButton>
+  </React.Fragment>
+);
+
+export const fifthListItems = (
+  <React.Fragment>
+    {/* <ListSubheader component="div" inset>
+      Sub-bar
+    </ListSubheader> */}
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Personal Info" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Settings" />
+    </ListItemButton>
+  </React.Fragment>
+);
+
+export const defaultItems = (
+  <React.Fragment>
+    {/* <ListSubheader component="div" inset>
+      Sub-bar
+    </ListSubheader> */}
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="TBD" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="TBD" />
     </ListItemButton>
   </React.Fragment>
 );

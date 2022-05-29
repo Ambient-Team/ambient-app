@@ -24,20 +24,31 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import ButtonBase from '@mui/material/ButtonBase';
 import { mainListItems } from './listItems';
-import Logo from './Logo_Final_White.png'; 
+import Logo from './Logo_White-01.svg'; 
 // import Deposits from './Deposits';
 // import Orders from './Order';
-import FirstPage from './firstpage';
+import OnboardPage from './OnboardPage';
+import OverviewPage from './firstpage';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import SamplePage from './samplepage';
+import GoalPage from './GoalPage'
+import EngineeringPage from './samplepage';
+import VisualizationPage from './VisualizationPage';
+import MachineLearningPage from './MachineLearningPage'
+import OutputPage from './OutputPage'
+import ProfilePage from './ProfilePage'
 
 // function Copyright(props) {
 //   return (
@@ -92,7 +103,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const drawerWidth = 200;
+const drawerWidth = 210;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -164,13 +175,23 @@ function DashboardContent() {
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const [anchorEl3, setAnchorEl3] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
+  const isMenuOpen2 = Boolean(anchorEl2);
+  const isMenuOpen3 = Boolean(anchorEl3);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+  const handleInfoMenuOpen = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+  const handleMessageMenuOpen = (event) => {
+    setAnchorEl3(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
@@ -179,6 +200,14 @@ function DashboardContent() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+  const handleMenuClose2 = () => {
+    setAnchorEl2(null);
+    handleMobileMenuClose();
+  };
+  const handleMenuClose3 = () => {
+    setAnchorEl3(null);
     handleMobileMenuClose();
   };
 
@@ -203,8 +232,84 @@ function DashboardContent() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}><ButtonBase href='./Profile'>Profile</ButtonBase></MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    </Menu>
+  );
+  const renderInfoMenu = (
+    <Menu
+      anchorEl={anchorEl2}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMenuOpen2}
+      onClose={handleMenuClose2}
+    >
+      <MenuItem onClick={handleMenuClose2}>
+        <ListItemIcon>
+          <CheckIcon fontSize="small"/>
+        </ListItemIcon>
+        <ListItemText>
+          Your project is running well. 
+        </ListItemText>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose2}>
+        <ListItemIcon>
+          <CheckIcon fontSize="small" />
+        </ListItemIcon>
+        <ListItemText>
+          All services are ready. 
+        </ListItemText>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose2}>
+        <ListItemIcon>
+          <CloseIcon fontSize="small" />
+        </ListItemIcon>
+        <ListItemText>
+          Some information missed. 
+        </ListItemText>
+      </MenuItem>
+    </Menu>
+  );
+  const renderMessageMenu = (
+    <Menu
+      anchorEl={anchorEl3}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMenuOpen3}
+      onClose={handleMenuClose3}
+    >
+      <MenuItem onClick={handleMenuClose3}>
+        <ListItemIcon>
+          <NotificationsIcon fontSize="small"/>
+        </ListItemIcon>
+        <ListItemText>
+          Placeholder ... 
+        </ListItemText>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose3}>
+        <ListItemIcon>
+          <NotificationsIcon fontSize="small"/>
+        </ListItemIcon>
+        <ListItemText>
+          Placeholder ... 
+        </ListItemText>
+      </MenuItem>
     </Menu>
   );
 
@@ -225,7 +330,7 @@ function DashboardContent() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      <MenuItem onClick={handleMessageMenuOpen}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
@@ -233,13 +338,13 @@ function DashboardContent() {
         </IconButton>
         <p>Messages</p>
       </MenuItem>
-      <MenuItem>
+      <MenuItem onClick={handleInfoMenuOpen}>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 3 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={3} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -308,17 +413,18 @@ function DashboardContent() {
             </IconButton> */}
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="info">
+              <IconButton size="large" aria-label="show 2 new mails" color="inherit" onClick={handleMessageMenuOpen}>
+                <Badge badgeContent={2} color="info">
                   <NotificationsOutlinedIcon />
                 </Badge>
               </IconButton>
               <IconButton
                 size="large"
-                aria-label="show 5 new notifications"
+                aria-label="show 3 new notifications"
+                onClick={handleInfoMenuOpen}
                 color="inherit"
               >
-                <Badge badgeContent={5} color="info">
+                <Badge badgeContent={3} color="info">
                   <InfoOutlinedIcon />
                 </Badge>
               </IconButton>
@@ -326,7 +432,7 @@ function DashboardContent() {
                 size="large"
                 edge="end"
                 aria-label="account of current user"
-                aria-controls={menuId}
+                aria-controls={mobileMenuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
                 color="inherit"
@@ -350,6 +456,8 @@ function DashboardContent() {
         </AppBar>
         {renderMobileMenu}
         {renderMenu}
+        {renderInfoMenu}
+        {renderMessageMenu}
         <Drawer variant="permanent" open={open}>
           <Toolbar
             sx={{
@@ -360,7 +468,9 @@ function DashboardContent() {
               height: 130
             }}
           >
+          <ButtonBase href='/' fullWidth>
             <img src={Logo} alt="Logo" width={180} height={75}/>
+          </ButtonBase>
             {/* <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton> */}
@@ -387,8 +497,14 @@ function DashboardContent() {
           <Toolbar />
           <Router>
             <Routes>
-              <Route path='/' element={<FirstPage />} />
-              <Route path='/sample' element={<SamplePage />} />
+              <Route path='/' element={<OnboardPage />} />
+              <Route path='/Overview' element={<OverviewPage />} />
+              <Route path='/Goal' element={<GoalPage />} />
+              <Route path='/Engineering' element={<EngineeringPage />} />
+              <Route path='/Visualization' element={<VisualizationPage />} />
+              <Route path='/ML' element={<MachineLearningPage />} />
+              <Route path='/Output' element={<OutputPage />} />
+              <Route path='/Profile' element={<ProfilePage />} />
             </Routes>
           </Router>
         </Box>

@@ -6,9 +6,9 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Selects from './Selects';
+import { forOverview } from './Selects';
 
-export default function FirstPage() {
+export default function OverviewPage() {
     return (   
         <div> 
         <Typography
@@ -29,7 +29,7 @@ export default function FirstPage() {
             >
               Overview
           </Typography>
-          <Selects />
+          { forOverview }
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
