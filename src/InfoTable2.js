@@ -113,7 +113,11 @@ export default function InfoTable1() {
                 </ListItem>
             </List>
               <Button variant="contained" color="primary" sx={{ mt: 20, ml: 15, borderRadius: 5 }} position="absolute">
+<<<<<<< HEAD
               <ButtonBase href='/Visualization' fullWidth>
+=======
+              <ButtonBase href='/ML' fullWidth>
+>>>>>>> master
                 See more
               </ButtonBase>
               </Button>

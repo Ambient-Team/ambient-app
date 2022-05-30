@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
 /functions/util/config.js
+=======
+>>>>>>> master
 
 # testing
 /coverage

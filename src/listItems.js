@@ -15,6 +15,10 @@ import StorageIcon from '@mui/icons-material/Storage';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import FolderIcon from '@mui/icons-material/Folder';
 import ButtonBase from '@mui/material/ButtonBase';
+<<<<<<< HEAD
+=======
+import { Link } from 'react-router-dom'
+>>>>>>> master
 
 // const handleGoalsClick = () => {
 //   alert('Hello!');
@@ -33,9 +37,15 @@ export const mainListItems = (
     <ListItemButton>
     <ButtonBase href='/Goal' fullWidth>
       <ListItemIcon>
+<<<<<<< HEAD
         <TrackChangesIcon />
       </ListItemIcon>
       <ListItemText primary="Goals" />
+=======
+      <TrackChangesIcon />
+      </ListItemIcon>
+      <ListItemText primary="Goals"></ListItemText>
+>>>>>>> master
     </ButtonBase>
     </ListItemButton>
     <ListItemButton>

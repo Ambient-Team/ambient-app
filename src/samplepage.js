@@ -57,6 +57,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const drawerWidth = 200;
 
+<<<<<<< HEAD
 function createData(name, calories, fat, carbs, protein) {
   return {
     name,
@@ -64,10 +65,20 @@ function createData(name, calories, fat, carbs, protein) {
     fat,
     carbs,
     protein,
+=======
+function createData(ID, Type, Name, Added, Status) {
+  return {
+    ID, 
+    Type, 
+    Name, 
+    Added, 
+    Status
+>>>>>>> master
   };
 }
 
 const rows = [
+<<<<<<< HEAD
   createData('Cupcake', 305, 3.7, 67, 4.3),
   createData('Donut', 452, 25.0, 51, 4.9),
   createData('Eclair', 262, 16.0, 24, 6.0),
@@ -82,6 +93,39 @@ const rows = [
   createData('Nougat', 360, 19.0, 9, 37.0),
   createData('Oreo', 437, 18.0, 63, 4.0),
 ];
+=======
+  createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
+  createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
+  createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
+  createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302236, 'US', 'TBD', 'TBD', 'PENDING'),
+  createData(5940107005302237, 'US', 'TBD', 'TBD', 'PENDING'),
+  createData(5940107005302237, 'US', 'TBD', 'TBD', 'PENDING'),
+  createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
+  createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
+  createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
+  createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
+  createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
+  createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
+  createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
+  createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
+]
+>>>>>>> master
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -115,6 +159,7 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
+<<<<<<< HEAD
     id: 'name',
     numeric: false,
     disablePadding: true,
@@ -143,6 +188,36 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: 'Protein (g)',
+=======
+    id: 'ID',
+    numeric: false,
+    disablePadding: true,
+    label: 'ID',
+  },
+  {
+    id: 'Tyep',
+    numeric: true,
+    disablePadding: false,
+    label: 'Data Type',
+  },
+  {
+    id: 'Name',
+    numeric: true,
+    disablePadding: false,
+    label: 'Name',
+  },
+  {
+    id: 'Added',
+    numeric: true,
+    disablePadding: false,
+    label: 'Data Added',
+  },
+  {
+    id: 'Status',
+    numeric: true,
+    disablePadding: false,
+    label: 'Data Engineering Status',
+>>>>>>> master
   },
 ];
 
@@ -232,7 +307,11 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
+<<<<<<< HEAD
           Nutrition
+=======
+          Sample
+>>>>>>> master
         </Typography>
       )}
 
@@ -357,7 +436,11 @@ export default function EngineeringPage() {
             {secondaryListItems}
           </List>
         </Drawer>
+<<<<<<< HEAD
         <Box sx={{ width: '75%' }}>
+=======
+        <Box sx={{ width: '90%' }}>
+>>>>>>> master
         <Typography
               component="h1"
               variant="subtitle1"
@@ -489,17 +572,29 @@ export default function EngineeringPage() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
+<<<<<<< HEAD
                   const isItemSelected = isSelected(row.name);
+=======
+                  const isItemSelected = isSelected(row.Date);
+>>>>>>> master
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
+<<<<<<< HEAD
                       onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
+=======
+                      onClick={(event) => handleClick(event, row.Date)}
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={row.Date}
+>>>>>>> master
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -517,12 +612,21 @@ export default function EngineeringPage() {
                         scope="row"
                         padding="none"
                       >
+<<<<<<< HEAD
                         {row.name}
                       </TableCell>
                       <TableCell align="right">{row.calories}</TableCell>
                       <TableCell align="right">{row.fat}</TableCell>
                       <TableCell align="right">{row.carbs}</TableCell>
                       <TableCell align="right">{row.protein}</TableCell>
+=======
+                        {row.ID}
+                      </TableCell>
+                      <TableCell align="right">{row.Type}</TableCell>
+                      <TableCell align="right">{row.Name}</TableCell>
+                      <TableCell align="right">{row.Added}</TableCell>
+                      <TableCell align="right">{row.Status}</TableCell>
+>>>>>>> master
                     </TableRow>
                   );
                 })}

@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "ambient-systems"
+<<<<<<< HEAD
   },
   "targets": {
     "ambient-systems": {
@@ -10,5 +11,7 @@
         ]
       }
     }
+=======
+>>>>>>> master
   }
 }

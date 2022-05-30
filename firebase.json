@@ -12,5 +12,16 @@
         "destination": "/index.html"
       }
     ]
+<<<<<<< HEAD
+=======
+  },
+  "emulators": {
+    "hosting": {
+      "port": 5033
+    },
+    "ui": {
+      "enabled": true
+    }
+>>>>>>> master
   }
 }

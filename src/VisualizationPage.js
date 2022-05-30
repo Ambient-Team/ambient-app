@@ -52,6 +52,7 @@ export default function VisualizationPage() {
     const data0 = {
         "nodes": [
           {
+<<<<<<< HEAD
             "name": "Visit"
           },
           {
@@ -65,6 +66,21 @@ export default function VisualizationPage() {
           },
           {
             "name": "Lost"
+=======
+            "name": "Electricity:Facility [kW](Hourly)"
+          },
+          {
+            "name": "Fans:Electricity [kW](Hourly)"
+          },
+          {
+            "name": "Cooling:Electricity [kW](Hourly)"
+          },
+          {
+            "name": "Heating:Electricity [kW](Hourly)"
+          },
+          {
+            "name": "InteriorEquipment:Electricity [kW](Hourly)"
+>>>>>>> master
           }
         ],
         "links": [
@@ -93,6 +109,7 @@ export default function VisualizationPage() {
 
     const data1 = [
         {
+<<<<<<< HEAD
           "name": "Page A",
           "uv": 4000,
           "pv": 2400,
@@ -132,12 +149,54 @@ export default function VisualizationPage() {
           "name": "Page G",
           "uv": 3490,
           "pv": 4300,
+=======
+          "name": "1/1/2022 1:00:00",
+          "Electricity:Facility": 22.0359773211,
+          "Fans:Electricity": 3.58622083312,
+          "amt": 2400
+        },
+        {
+          "name": "1/1/2022 2:00:00",
+          "Electricity:Facility": 14.6497574756,
+          "Fans:Electricity": 0,
+          "amt": 2210
+        },
+        {
+          "name": "1/1/2022 3:00:00",
+          "Electricity:Facility": 14.6695666583,
+          "Fans:Electricity": 0,
+          "amt": 2290
+        },
+        {
+          "name": "1/1/2022 4:00:00",
+          "Electricity:Facility": 14.6778080063,
+          "Fans:Electricity": 0,
+          "amt": 2000
+        },
+        {
+          "name": "1/1/2022 5:00:00",
+          "Electricity:Facility": 14.8247939046,
+          "Fans:Electricity": 0,
+          "amt": 2181
+        },
+        {
+          "name": "1/1/2022 6:00:00",
+          "Electricity:Facility": 22.1826486691,
+          "Fans:Electricity": 3.58622083312,
+          "amt": 2500
+        },
+        {
+          "name": "1/1/2022 7:00:00",
+          "Electricity:Facility": 38.1318450946,
+          "Fans:Electricity": 3.58622083312,
+>>>>>>> master
           "amt": 2100
         }
       ]
 
       const data2 = [
         {
+<<<<<<< HEAD
           "name": "Page A",
           "uv": 4000,
           "pv": 2400
@@ -171,11 +230,47 @@ export default function VisualizationPage() {
           "name": "Page G",
           "uv": 3490,
           "pv": 4300
+=======
+          "name": "1/1/2022 1:00:00",
+          "Electricity:Facility": 22.0359773211,
+          "Fans:Electricity": 3.58622083312,
+        },
+        {
+          "name": "1/1/2022 2:00:00",
+          "Electricity:Facility": 14.6497574756,
+          "Fans:Electricity": 0,
+        },
+        {
+          "name": "1/1/2022 3:00:00",
+          "Electricity:Facility": 14.6695666583,
+          "Fans:Electricity": 0,
+        },
+        {
+          "name": "1/1/2022 4:00:00",
+          "Electricity:Facility": 14.6778080063,
+          "Fans:Electricity": 0,
+        },
+        {
+          "name": "1/1/2022 5:00:00",
+          "Electricity:Facility": 14.8247939046,
+          "Fans:Electricity": 0,
+        },
+        {
+          "name": "1/1/2022 6:00:00",
+          "Electricity:Facility": 22.1826486691,
+          "Fans:Electricity": 3.58622083312,
+        },
+        {
+          "name": "1/1/2022 7:00:00",
+          "Electricity:Facility": 38.1318450946,
+          "Fans:Electricity": 3.58622083312,
+>>>>>>> master
         }
       ]
 
       const data3 = [
         {
+<<<<<<< HEAD
           "subject": "Math",
           "A": 120,
           "B": 110,
@@ -210,11 +305,48 @@ export default function VisualizationPage() {
           "A": 65,
           "B": 85,
           "fullMark": 150
+=======
+          "subject": "1/2/2022 10:00:00",
+          "gas": 195.316130277,
+          "heating": 126.323276903,
+          "fullMark": 200
+        },
+        {
+          "subject": "1/2/2022 11:00:00",
+          "gas": 185.990106876,
+          "heating": 127.962255011,
+          "fullMark": 200
+        },
+        {
+          "subject": "1/2/2022 12:00:00",
+          "gas": 173.953198247,
+          "heating": 117.690928261,
+          "fullMark": 200
+        },
+        {
+          "subject": "1/2/2022 13:00:00",
+          "gas": 168.977284855,
+          "heating": 122.827207538,
+          "fullMark": 200
+        },
+        {
+          "subject": "1/2/2022 14:00:00",
+          "gas": 162.368930155,
+          "heating": 126.323276903,
+          "fullMark": 200
+        },
+        {
+          "subject": "1/2/2022 15:00:00",
+          "gas": 174.31754351,
+          "heating": 129.920541843,
+          "fullMark": 200
+>>>>>>> master
         }
       ]
 
       const data4 = [
         {
+<<<<<<< HEAD
           "name": "18-24",
           "uv": 31.47,
           "pv": 2400,
@@ -254,12 +386,54 @@ export default function VisualizationPage() {
           "name": "unknow",
           "uv": 6.67,
           "pv": 4800,
+=======
+          "name": "1/1/2022 1:00:00",
+          "InteriorLights:Electricity": 4.58992532963,
+          "InteriorEquipment:Electricity": 8.1892,
+          "fill": "#8884d8"
+        },
+        {
+          "name": "1/1/2022 2:00:00",
+          "InteriorLights:Electricity": 1.52997510988,
+          "InteriorEquipment:Electricity": 7.4902,
+          "fill": "#83a6ed"
+        },
+        {
+          "name": "1/1/2022 3:00:00",
+          "InteriorLights:Electricity": 1.52997510988,
+          "InteriorEquipment:Electricity": 7.4902,
+          "fill": "#8dd1e1"
+        },
+        {
+          "name": "1/1/2022 4:00:00",
+          "InteriorLights:Electricity": 1.52997510988,
+          "InteriorEquipment:Electricity": 7.4902,
+          "fill": "#82ca9d"
+        },
+        {
+          "name": "1/1/2022 5:00:00",
+          "InteriorLights:Electricity": 1.52997510988,
+          "InteriorEquipment:Electricity": 7.4902,
+          "fill": "#a4de6c"
+        },
+        {
+          "name": "1/1/2022 6:00:00",
+          "InteriorLights:Electricity": 4.58992532963,
+          "InteriorEquipment:Electricity": 8.1892,
+          "fill": "#d0ed57"
+        },
+        {
+          "name": "1/1/2022 7:00:00",
+          "InteriorLights:Electricity": 9.17985065927,
+          "InteriorEquipment:Electricity": 19.4245,
+>>>>>>> master
           "fill": "#ffc658"
         }
       ]
 
       const data01 = [
         {
+<<<<<<< HEAD
           "name": "Group A",
           "value": 400
         },
@@ -282,10 +456,35 @@ export default function VisualizationPage() {
         {
           "name": "Group F",
           "value": 189
+=======
+          "name": "1/2/2022 1:00:00",
+          "value": 4.58992533
+        },
+        {
+          "name": "1/2/2022 2:00:00",
+          "value": 1.52997511
+        },
+        {
+          "name": "1/2/2022 3:00:00",
+          "value": 1.52997511
+        },
+        {
+          "name": "1/2/2022 4:00:00",
+          "value": 1.52997511
+        },
+        {
+          "name": "1/2/2022 5:00:00",
+          "value": 1.52997511
+        },
+        {
+          "name": "1/2/2022 6:00:00",
+          "value": 4.58992533
+>>>>>>> master
         }
       ];
       const data02 = [
         {
+<<<<<<< HEAD
           "name": "Group A",
           "value": 2400
         },
@@ -308,6 +507,30 @@ export default function VisualizationPage() {
         {
           "name": "Group F",
           "value": 4800
+=======
+          "name": "1/2/2022 1:00:00",
+          "value": 158.0636608
+        },
+        {
+          "name": "1/2/2022 2:00:00",
+          "value": 3.931972005
+        },
+        {
+          "name": "1/2/2022 3:00:00",
+          "value": 3.35988
+        },
+        {
+          "name": "1/2/2022 4:00:00",
+          "value": 3.931926177
+        },
+        {
+          "name": "1/2/2022 5:00:00",
+          "value": 3.35988
+        },
+        {
+          "name": "1/2/2022 6:00:00",
+          "value": 165.2225549
+>>>>>>> master
         }
       ];
 
@@ -371,8 +594,13 @@ export default function VisualizationPage() {
                         <YAxis />
                         {/* <CartesianGrid strokeDasharray="3 3" /> */}
                         <Tooltip />
+<<<<<<< HEAD
                         <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
                         <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+=======
+                        <Area type="monotone" dataKey="Electricity:Facility" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+                        <Area type="monotone" dataKey="Fans:Electricity" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+>>>>>>> master
                     </AreaChart>
 
                     <PieChart width={400} height={250}>
@@ -388,16 +616,26 @@ export default function VisualizationPage() {
                         <YAxis />
                         <Tooltip />
                         <Legend />
+<<<<<<< HEAD
                         <Bar dataKey="pv" fill="#8884d8" />
                         <Bar dataKey="uv" fill="#82ca9d" />
+=======
+                        <Bar dataKey="Electricity:Facility" fill="#8884d8" />
+                        <Bar dataKey="Fans:Electricity" fill="#82ca9d" />
+>>>>>>> master
                     </BarChart>
                     
                     <RadarChart outerRadius={90} width={400} height={250} data={data3}>
                         <PolarGrid />
                         <PolarAngleAxis dataKey="subject" />
                         <PolarRadiusAxis angle={30} domain={[0, 150]} />
+<<<<<<< HEAD
                         <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
                         <Radar name="Lily" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+=======
+                        <Radar name="Gas:Facility [kW](Hourly)" dataKey="gas" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+                        <Radar name="Heating:Gas [kW](Hourly)" dataKey="heating" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+>>>>>>> master
                         <Legend />
                     </RadarChart>
                 </Box>
@@ -428,7 +666,11 @@ export default function VisualizationPage() {
                         startAngle={180} 
                         endAngle={-180}
                         >
+<<<<<<< HEAD
                         <RadialBar minAngle={15} label={{ fill: '#666', position: 'insideStart' }} background clockWise={true} dataKey='uv' />
+=======
+                        <RadialBar minAngle={15} label={{ fill: '#666', position: 'insideStart' }} background clockWise={true} dataKey='InteriorLights:Electricity' />
+>>>>>>> master
                         <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' align="right" />
                         <Tooltip />
                     </RadialBarChart>
