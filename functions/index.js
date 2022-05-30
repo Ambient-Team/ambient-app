@@ -1,25 +1,18 @@
+const functions = require("firebase-functions");
+const app = require("express")();
 
-const functions = require('firebase-functions');
-const app = require('express')();
+const { getAllConnectors, createConnector } = require("./APIs/connectors");
 
-const {
-    getAllConnectors
-} = require('./APIs/connectors')
+app.get("/connectors", getAllConnectors);
+app.post("/connectors/add", createConnector);
 
-app.get('/connectors', getAllConnectors);
-
-
-const {
-    loginUser
-} = require('./APIs/users')
+const { loginUser } = require("./APIs/users");
 
 // Users
-app.post('/login', loginUser);
+app.post("/login", loginUser);
 
-const {
-    signUpUser
-} = require('./APIs/users')
+const { signUpUser } = require("./APIs/users");
 
-app.post('/signup', signUpUser);
+app.post("/signup", signUpUser);
 
 exports.api = functions.https.onRequest(app);
