@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 import "./App.css";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-=======
-import './App.css';
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 
-import Button from '@mui/material/Button';
-
->>>>>>> e967467aaf9a68474f12761cac20d3a192c04783
+import Button from "@mui/material/Button";
 
 import Button from "@mui/material/Button";
 
