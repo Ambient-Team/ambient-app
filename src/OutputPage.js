@@ -88,6 +88,24 @@ export default function OutputPage() {
                         Output
                     </Typography>
                 </Box>
+                <Box>
+                  <div id="output"></div>
+                    <py-script output="output">
+import pandas as pd;
+import matplotlib.pyplot as plt;
+import numpy as np;
+
+data = pd.read_csv('data.csv');
+
+data = data.drop(['Heating:Electricity [kW](Hourly)'],axis=1);
+
+data = data.drop(['Date/Time'], axis=1);
+
+fig, ax = plt.subplots();
+ax.boxplot(data);
+fig
+                    </py-script>
+                </Box>
             </Box>
         </Box>
     );

@@ -49,6 +49,8 @@ import VisualizationPage from './VisualizationPage';
 import MachineLearningPage from './MachineLearningPage'
 import OutputPage from './OutputPage'
 import ProfilePage from './ProfilePage'
+import SignInPage from './SignInPage'
+import SignUpPage from './SignUpPage'
 
 // function Copyright(props) {
 //   return (
@@ -505,6 +507,8 @@ function DashboardContent() {
               <Route path='/ML' element={<MachineLearningPage />} />
               <Route path='/Output' element={<OutputPage />} />
               <Route path='/Profile' element={<ProfilePage />} />
+              <Route path='/SignUp' element={<SignUpPage />} />
+              <Route path='/SignIn' element={<SignInPage />} />
             </Routes>
           </Router>
         </Box>
