@@ -67,6 +67,7 @@ export default function SignUpPage() {
             <Button
               type="submit"
               fullWidth
+              href="/Overview"
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
@@ -74,7 +75,7 @@ export default function SignUpPage() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/SignIn" variant="body2">
                   {"Already have an account? Sign In"}
                 </Link>
               </Grid>
