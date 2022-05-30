@@ -12,3 +12,6 @@ code {
     monospace;
 } */
 
+img#backgroundImg {
+  opacity: 0.2;
+}

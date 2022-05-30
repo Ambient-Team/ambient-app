@@ -18,6 +18,7 @@ import Divider from '@mui/material/Divider';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import ButtonBase from '@mui/material/ButtonBase';
 
 // function generate(element) {
 //   return [0, 1, 2].map((value) =>
@@ -110,8 +111,10 @@ export default function InfoTable1() {
                 </ListItem>
             </List>
           </Demo>
-          <Button variant="contained" color="primary" sx={{ mt: 2, ml: 16, borderRadius: 5 }} position="absolute">
+            <Button variant="contained" color="primary" sx={{ mt: 2, ml: 16, borderRadius: 5 }} position="absolute">
+            <ButtonBase href='/Output' fullWidth>
               See more
+            </ButtonBase>
             </Button>
     </Box>
   );

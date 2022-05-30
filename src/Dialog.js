@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
+import FormControl from '@mui/material/FormControl'
 
 export default function FormDialog() {
   const [open1, setOpen1] = React.useState(false);
@@ -74,6 +75,7 @@ export default function FormDialog() {
           <DialogContentText>
             Please add the request for your service.
           </DialogContentText>
+          <FormControl sx={{ mt: 2, minWidth: 500, minHeight: 100 }}>
           <TextField
             autoFocus
             margin="dense"
@@ -82,6 +84,7 @@ export default function FormDialog() {
             fullWidth
             variant="standard"
           />
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
@@ -95,6 +98,7 @@ export default function FormDialog() {
           <DialogContentText>
             Please add the request for your service.
           </DialogContentText>
+          <FormControl sx={{ mt: 2, minWidth: 500, minHeight: 100 }}>
           <TextField
             autoFocus
             margin="dense"
@@ -103,6 +107,7 @@ export default function FormDialog() {
             fullWidth
             variant="standard"
           />
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
@@ -116,6 +121,7 @@ export default function FormDialog() {
           <DialogContentText>
             Please add the request for your service.
           </DialogContentText>
+          <FormControl sx={{ mt: 2, minWidth: 500, minHeight: 100 }}>
           <TextField
             autoFocus
             margin="dense"
@@ -124,6 +130,7 @@ export default function FormDialog() {
             fullWidth
             variant="standard"
           />
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
@@ -137,6 +144,7 @@ export default function FormDialog() {
           <DialogContentText>
             Please add the request for your service.
           </DialogContentText>
+          <FormControl sx={{ mt: 2, minWidth: 500, minHeight: 100 }}>
           <TextField
             autoFocus
             margin="dense"
@@ -145,6 +153,7 @@ export default function FormDialog() {
             fullWidth
             variant="standard"
           />
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

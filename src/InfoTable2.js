@@ -19,6 +19,7 @@ import CachedIcon from '@mui/icons-material/Cached';
 import Button from '@mui/material/Button';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import SpeedIcon from '@mui/icons-material/Speed';
+import ButtonBase from '@mui/material/ButtonBase';
 
 // function generate(element) {
 //   return [0, 1, 2].map((value) =>
@@ -111,9 +112,11 @@ export default function InfoTable1() {
                   />
                 </ListItem>
             </List>
-            <Button variant="contained" color="primary" sx={{ mt: 20, ml: 15, borderRadius: 5 }} position="absolute">
-              See more
-            </Button>
+              <Button variant="contained" color="primary" sx={{ mt: 20, ml: 15, borderRadius: 5 }} position="absolute">
+              <ButtonBase href='/Visualization' fullWidth>
+                See more
+              </ButtonBase>
+              </Button>
           </Demo>
     </Box>
   );
