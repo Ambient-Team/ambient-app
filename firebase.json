@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "target": "ambient-1",
     "public": "build",
     "ignore": [
       "firebase.json",
