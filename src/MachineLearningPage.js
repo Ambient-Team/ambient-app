@@ -22,6 +22,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useEffect, useState } from 'react';
+import { assertExpressionStatement } from '@babel/types';
+import axios from 'axios';
+import { SettingsInputAntenna } from '@mui/icons-material';
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -55,6 +60,8 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
+
+
 const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
@@ -78,6 +85,17 @@ function MyFormHelperText() {
 }
 
 export default function MachineLearningPage() {
+
+
+  useEffect(() => {
+    axios.get('https://us-central1-ambient-systems.cloudfunctions.net/api/connectors')
+    .then(res => {
+      setConnectors(res.data);
+    })
+
+  },[]);
+
+  const [connectors,setConnectors] = useState();
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -151,15 +169,15 @@ export default function MachineLearningPage() {
                     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                       <TableHead>
                         <TableRow>
-                          <TableCell>Dessert (100g serving)</TableCell>
-                          <TableCell align="right">Calories</TableCell>
-                          <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                          <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                          <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                          <TableCell>name</TableCell>
+                          <TableCell align="right">status</TableCell>
+                          <TableCell align="right">dataType</TableCell>
+                          {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                          <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {rows.map((row) => (
+                        {connectors?.map((row) => (
                           <TableRow
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -167,10 +185,10 @@ export default function MachineLearningPage() {
                             <TableCell component="th" scope="row">
                               {row.name}
                             </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align="right">{row.status}</TableCell>
+                            <TableCell align="right">{row.dataType}</TableCell>
+                            {/* <TableCell align="right">{row.carbs}</TableCell>
+                            <TableCell align="right">{row.protein}</TableCell> */}
                           </TableRow>
                         ))}
                       </TableBody>
