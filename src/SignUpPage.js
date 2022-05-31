@@ -13,27 +13,35 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useState } from "react";
 
 export default function SignUpPage() {
+ const [email,setEmail] = useState();
+ const [password,setPassword] = useState();
+
   const handleSubmit = (event) => {
     const data = new FormData(event.currentTarget);
-    const email = data.get("email").toString();
 
     axios
       .post(
         `https://us-central1-ambient-systems.cloudfunctions.net/api/signup`,
         {
-          firstName: "Anja",
-          lastName: "Mesaldzic",
+          firstName: "Name",
+          lastName: "LastName",
           email: data.get("email"),
           phoneNumber: "+38169112233",
           country: "Serbia",
           password: data.get("password"),
           confirmPassword: data.get("password"),
-          username: "frey@gmail.rs",
+          username: data.get("email"),
         }
       )
-      .then((response) => console.log(response));
+      .then((response) => {
+        console.log(response)
+        setPassword("")
+        setEmail("")
+      }
+      );
     event.preventDefault();
 
     console.log({
@@ -60,6 +68,8 @@ export default function SignUpPage() {
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
+            onChange ={(e) => setEmail(e.target.value)}
+            value={email}
             margin="normal"
             required
             fullWidth
@@ -70,6 +80,8 @@ export default function SignUpPage() {
             autoFocus
           />
           <TextField
+            onChange ={(e) => setPassword(e.target.value)}
+           value={password}
             margin="normal"
             required
             fullWidth
