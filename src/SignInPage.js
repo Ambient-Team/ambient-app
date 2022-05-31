@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,6 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 
 export default function SignInPage() {
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const handleSubmit = (event) => {
     const data = new FormData(event.currentTarget);
 
@@ -26,7 +29,12 @@ export default function SignInPage() {
           password: data.get("password"),
         }
       )
-      .event.preventDefault();
+      .then((response) => {
+        setEmail("");
+        setPassword("");
+        console.log(response);
+      });
+    event.preventDefault();
 
     console.log({
       email: data.get("email"),
@@ -60,6 +68,8 @@ export default function SignInPage() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -70,6 +80,8 @@ export default function SignInPage() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
