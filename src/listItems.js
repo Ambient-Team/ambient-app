@@ -24,60 +24,74 @@ import { Link } from 'react-router-dom'
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton>
-    <ButtonBase href='/Overview' fullWidth>
+    <Link to = "/Dashboard/Overview" >
+    <ButtonBase  fullWidth>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Overview" />
     </ButtonBase>
+    </Link>
     </ListItemButton>
     <ListItemButton>
-    <ButtonBase href='/Goal' fullWidth>
+    <Link to = "/Dashboard/Goal" >
+    <ButtonBase fullWidth>
       <ListItemIcon>
       <TrackChangesIcon />
       </ListItemIcon>
       <ListItemText primary="Goals"></ListItemText>
     </ButtonBase>
+    </Link>
     </ListItemButton>
     <ListItemButton>
-    <ButtonBase href='/Engineering' fullWidth>
+    <Link to = "/Dashboard/Engineering" >
+    <ButtonBase  fullWidth>
       <ListItemIcon>
         <StorageIcon />
       </ListItemIcon>
       <ListItemText primary="Data Engineering" />
       </ButtonBase>
+      </Link>
     </ListItemButton>
     <ListItemButton>
-    <ButtonBase href='/Visualization' fullWidth>
+    <Link to = "/Dashboard/Visualization" >
+    <ButtonBase  fullWidth>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Data Visualization" />
     </ButtonBase>
+    </Link>
     </ListItemButton>
     <ListItemButton>
-    <ButtonBase href='/ML' fullWidth>
+    <Link to = "/Dashboard/ML" >
+    <ButtonBase  fullWidth>
       <ListItemIcon>
         <AccountTreeIcon />
       </ListItemIcon>
       <ListItemText primary="Machine Learning" />
       </ButtonBase>
+      </Link>
     </ListItemButton>
     <ListItemButton>
-    <ButtonBase href='/Output' fullWidth>
+    <Link to = "/Dashboard/Output" >
+    <ButtonBase  fullWidth>
       <ListItemIcon>
         <FolderIcon />
       </ListItemIcon>
       <ListItemText primary="Output" />
       </ButtonBase>
+      </Link>
     </ListItemButton>
     <ListItemButton>
-    <ButtonBase href='/Profile' fullWidth>
+    <Link to = "/Dashboard/Profile" >
+    <ButtonBase  fullWidth>
       <ListItemIcon>
         <PersonIcon />
       </ListItemIcon>
       <ListItemText primary="Profile" />
       </ButtonBase>
+      </Link>
     </ListItemButton>
   </React.Fragment>
 );

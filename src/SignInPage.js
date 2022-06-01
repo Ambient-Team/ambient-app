@@ -14,10 +14,19 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 
 export default function SignInPage() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  useEffect(() => {
+  const token =  window.localStorage.getItem('access_token');
+  if(token) navigate("/Dashboard");
+  },[])
+
   const handleSubmit = (event) => {
     const data = new FormData(event.currentTarget);
 
@@ -32,7 +41,9 @@ export default function SignInPage() {
       .then((response) => {
         setEmail("");
         setPassword("");
+        window.localStorage.setItem('access_token', response.data.token)
         console.log(response);
+        navigate('/Dashboard')
       });
     event.preventDefault();
 
@@ -97,7 +108,7 @@ export default function SignInPage() {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="SignUp" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

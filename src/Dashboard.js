@@ -42,6 +42,8 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useNavigate,
+   Outlet
 } from "react-router-dom";
 import GoalPage from './GoalPage'
 import EngineeringPage from './samplepage';
@@ -51,6 +53,7 @@ import OutputPage from './OutputPage'
 import ProfilePage from './ProfilePage'
 import SignInPage from './SignInPage'
 import SignUpPage from './SignUpPage'
+import { useEffect } from 'react';
 
 // function Copyright(props) {
 //   return (
@@ -497,20 +500,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Router>
-            <Routes>
-              <Route path='/' element={<OnboardPage />} />
-              <Route path='/Overview' element={<OverviewPage />} />
-              <Route path='/Goal' element={<GoalPage />} />
-              <Route path='/Engineering' element={<EngineeringPage />} />
-              <Route path='/Visualization' element={<VisualizationPage />} />
-              <Route path='/ML' element={<MachineLearningPage />} />
-              <Route path='/Output' element={<OutputPage />} />
-              <Route path='/Profile' element={<ProfilePage />} />
-              <Route path='/SignUp' element={<SignUpPage />} />
-              <Route path='/SignIn' element={<SignInPage />} />
-            </Routes>
-          </Router>
+          <Outlet />
         </Box>
       </Box>
     </ThemeProvider>
@@ -518,5 +508,11 @@ function DashboardContent() {
 }
 
 export default function Dashboard() {
+ const navigate = useNavigate()
+  useEffect(() => {
+  const token =  window.localStorage.getItem('access_token');
+  if(!token) navigate("/");
+  },[])
+
   return <DashboardContent />;
 }
