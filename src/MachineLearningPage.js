@@ -604,9 +604,10 @@ export default function MachineLearningPage() {
   };
 
   useEffect(() => {
+    
     axios
       .get(
-        `https://us-central1-ambient-systems.cloudfunctions.net/api/connectors`
+        `https://us-central1-ambient-systems.cloudfunctions.net/api/connectors`, { headers: {"Authorization" : `Bearer ${window.localStorage.getItem('access_token')}`}}
       )
       .then((res) => {
         setConnectors(res.data);
