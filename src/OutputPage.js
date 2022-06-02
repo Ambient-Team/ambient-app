@@ -90,7 +90,7 @@ export default function OutputPage() {
                 </Box>
                 <Box>
                   <div id="output"></div>
-                    <py-script output="output">
+                    {/* <py-script output="output">
 import pandas as pd;
 import matplotlib.pyplot as plt;
 import numpy as np;
@@ -104,7 +104,7 @@ data = data.drop(['Date/Time'], axis=1);
 fig, ax = plt.subplots();
 ax.boxplot(data);
 fig
-                    </py-script>
+                    </py-script> */}
                 </Box>
             </Box>
         </Box>
