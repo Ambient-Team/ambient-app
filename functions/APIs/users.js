@@ -65,6 +65,7 @@ exports.signUpUser = (request, response) => {
             }
         })
         .then((data) => {
+            console.log(data);
             userId = data.user.uid;
             return data.user.getIdToken();
         })
