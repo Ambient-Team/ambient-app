@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import * as React from 'react';
+import { useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -10,6 +11,15 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import { fifthListItems } from './listItems';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+import TableHead from "@mui/material/TableHead";
+import TableContainer from "@mui/material/TableContainer";
+import Paper from "@mui/material/Paper";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 
@@ -17,6 +27,7 @@ import { fifthListItems } from './listItems';
 // Import firebase functions to use
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
+import { func } from 'prop-types';
 
 // These parameters let us connect to our project
 const firebaseApp = initializeApp({
@@ -29,7 +40,7 @@ const firebaseApp = initializeApp({
   appId: "1:1001740093061:web:b516ca06c0e80199b90bec"
 });
 // Connect to the related firestore
-const firestore = getFirestore();
+const firestore = getFirestore(firebaseApp);
 // Specify your Collection and Document
 const Test = doc(firestore, 'Test/Frey_test')
 const TestCollection = collection(firestore, 'Test')
@@ -145,6 +156,60 @@ export default function ProfilePage() {
         setOpen(!open);
     };
 
+    const [examples, setExamples] = useState([])
+
+    useEffect(() => {
+      const exampleCollectionRef = collection(firestore, 'Test')
+      const unsubscribe = onSnapshot(exampleCollectionRef, snapshot => {
+        setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+      })
+
+      return () => {
+        unsubscribe()
+      }
+    }, [])
+
+    // useEffect(() => {
+    //   getExamples()
+    // }, [])
+
+    // useEffect(() => {
+    //   console.log(examples)
+    // }, [examples])
+
+    function getExamples() {
+      const exampleCollectionRef = collection(firestore, 'Test')
+      getDocs(exampleCollectionRef)
+        .then(response => {
+          const example = response.docs.map(doc => ({
+            data: doc.data(), 
+            id: doc.id,
+          }))
+          setExamples(example)
+        })
+        .catch(error => console.log(error.message))
+    }
+
+    const [input, setInput] = useState([])
+    const [name, setValue1] = useState();
+    const [request, setValue2] = useState();
+
+    function handleInput(e) {
+      e.preventDefault()
+      if (name === '' || request === '') {
+        return 
+      }
+      
+      const exampleCollectionRef = collection(firestore, 'Test')
+      addDoc(exampleCollectionRef, {name, request})
+        .then(response => {
+          console.log(response.id)
+        })
+        .catch(error => {
+          console.log(error.message)
+        })
+    }
+
     return (
         <Box sx={{ display: 'flex', height: '100%' }}>
             <Drawer variant="permanent" open={open} sx={{ height: 1000 }}>
@@ -188,7 +253,39 @@ export default function ProfilePage() {
                         Personal Info
                     </Typography>
                 </Box>
-            </Box>
+                <Box>
+                <TableContainer component={Paper} sx={{ mt: 3, ml: 8 }}>
+                  <Table sx={{ minWidth: 650 }} size="small">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>1</TableCell>
+                        <TableCell align="right">2</TableCell>
+                        <TableCell align="right">3</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {examples?.map((row) => (
+                        <TableRow
+                          key={row.data.id}
+                          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                        >
+                          <TableCell component="th" scope="row">
+                            {row.data.token}
+                          </TableCell>
+                          <TableCell align="right">{row.data.name}</TableCell>
+                          <TableCell align="right">{row.data.request}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  </TableContainer>
+                </Box>
+                <Box sx={{ mt: 3, ml: 8 }}>
+                  <TextField id="name" label="name" variant="filled" value={name} onChange={(e) => setValue1(e.target.value)}/>
+                  <TextField id="request" label="request" variant="filled" sx={{ ml: 3 }} value={request} onChange={(e) => setValue2(e.target.value)}/>
+                  <Button variant="contained" sx={{ ml: 3, mt: 2 }} onClick={handleInput}>Input</Button>
+                </Box>
+              </Box>
         </Box>
     );
 }
