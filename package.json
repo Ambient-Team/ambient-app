@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "dayjs": "^1.11.2",
+    "firebase": "^9.8.2",
     "mui-calendar-picker": "^1.0.10",
     "primeicons": "^5.0.0",
     "primereact": "^8.1.0",
