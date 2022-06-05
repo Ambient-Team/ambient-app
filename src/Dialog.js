@@ -66,7 +66,7 @@ export default function FormDialog() {
 
   return (
     <div>
-        <Button variant="contained" endIcon={<AddSharpIcon />} color="primary" sx={{ mt: 5, ml: 11, borderRadius: 5 }} position="absolute" onClick={handleClickOpen}>
+        <Button variant="contained" endIcon={<AddSharpIcon />} color="primary" sx={{ mt: 1, ml: 11, borderRadius: 5 }} position="absolute" onClick={handleClickOpen}>
             Add request
         </Button>
       <Dialog open={open1} onClose={handleClose}>

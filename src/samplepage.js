@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from "react";
 import MuiDrawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
@@ -28,6 +29,22 @@ import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import TablePagination from '@mui/material/TablePagination';
 import TableSortLabel from '@mui/material/TableSortLabel';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
+
+const firebaseApp = initializeApp({
+  apiKey: "AIzaSyBamRPS6NxxPg7lplFrxZd36fLWg9ZUTDY",
+  authDomain: "ambient-systems.firebaseapp.com",
+  databaseURL: "https://ambient-systems-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ambient-systems",
+  storageBucket: "ambient-systems.appspot.com",
+  messagingSenderId: "1001740093061",
+  appId: "1:1001740093061:web:b516ca06c0e80199b90bec"
+});
+const firestore = getFirestore(firebaseApp);
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -57,48 +74,48 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const drawerWidth = 200;
 
-function createData(ID, Type, Name, Added, Status) {
+function createData(date, type, id, name, status) {
   return {
-    ID, 
-    Type, 
-    Name, 
-    Added, 
-    Status
+    date, 
+    type, 
+    id, 
+    name, 
+    status
   };
 }
 
-const rows = [
-  createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
-  createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
-  createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
-  createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302236, 'US', 'TBD', 'TBD', 'PENDING'),
-  createData(5940107005302237, 'US', 'TBD', 'TBD', 'PENDING'),
-  createData(5940107005302237, 'US', 'TBD', 'TBD', 'PENDING'),
-  createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
-  createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
-  createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
-  createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
-  createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
-  createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
-  createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
-  createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
-]
+// const rows = [
+//   createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
+//   createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
+//   createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
+//   createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302236, 'US', 'TBD', 'TBD', 'PENDING'),
+//   createData(5940107005302237, 'US', 'TBD', 'TBD', 'PENDING'),
+//   createData(5940107005302237, 'US', 'TBD', 'TBD', 'PENDING'),
+//   createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
+//   createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
+//   createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
+//   createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302230, 'ST', 'Building Management System', '2022-5-12 11:36 AM', '100%'),
+//   createData(5940107005302231, 'SS', 'Enterprise Resourse Planning', '2022-5-24 18:22 PM', '85%'),
+//   createData(5940107005302232, 'ST', 'CMMS', '2022-5-24 20:22 PM', '65%'),
+//   createData(5940107005302233, 'US', 'Climate risks - Transition', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302234, 'US', 'Climate risks - Physical', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302235, 'US', 'Relation discovery', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302236, 'US', 'Scenario modelling', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302237, 'US', 'Add carbon sequestration filters to AC system', '2022-5-25 13:55 AM', 'PENDING'),
+//   createData(5940107005302237, 'US', 'Modify operating schedule', '2022-5-25 13:55 AM', 'PENDING'),
+// ]
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -132,35 +149,35 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'ID',
+    id: 'date',
     numeric: false,
     disablePadding: true,
-    label: 'ID',
+    label: 'date',
   },
   {
-    id: 'Tyep',
+    id: 'type',
     numeric: true,
     disablePadding: false,
-    label: 'Data Type',
+    label: 'type',
   },
   {
-    id: 'Name',
+    id: 'id',
     numeric: true,
     disablePadding: false,
-    label: 'Name',
+    label: 'id',
   },
   {
-    id: 'Added',
+    id: 'name',
     numeric: true,
     disablePadding: false,
-    label: 'Data Added',
+    label: 'name',
   },
   {
-    id: 'Status',
+    id: 'status',
     numeric: true,
     disablePadding: false,
-    label: 'Data Engineering Status',
-  },
+    label: 'status',
+  }
 ];
 
 function EnhancedTableHead(props) {
@@ -279,6 +296,46 @@ export default function EngineeringPage() {
     const toggleDrawer = () => {
         setOpen(!open);
     };
+
+    const [examples, setExamples] = useState([])
+
+    useEffect(() => {
+      const exampleCollectionRef = collection(firestore, 'connectors')
+      const unsubscribe = onSnapshot(exampleCollectionRef, snapshot => {
+        setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+      })
+
+      return () => {
+        unsubscribe()
+      }
+    }, [])
+
+    var rows = []
+    const test = examples.map((row) => {
+          rows.push(createData(Date(row.data.dataEdit).toString(), row.data.dataType, row.data.id, row.data.name, row.data.status))
+    })
+
+    const [dataType, setValue1] = useState();
+    const [name, setValue3] = useState();
+    const [status, setValue4] = useState();
+
+    function handleInput(e) {
+      e.preventDefault()
+      if (name === '' || dataType === '' || status === '') {
+        alert("Please fill all 3 fields")
+        return 
+      }
+      
+      const exampleCollectionRef = collection(firestore, 'connectors')
+      const dataEdit = new Date()
+      addDoc(exampleCollectionRef, {dataEdit, dataType, name, status})
+        .then(response => {
+          console.log(response.id)
+        })
+        .catch(error => {
+          console.log(error.message)
+        })
+    }
 
     // const [checked, setChecked] = React.useState([true, false]);
     // const handleChange1 = (event) => {
@@ -483,6 +540,12 @@ export default function EngineeringPage() {
                 </Box>
             </Box> */}
             </Box>
+        <Box sx={{ ml: 3 }}>
+          <TextField id="dataType" label="dataType" variant="filled" value={dataType} onChange={(e) => setValue1(e.target.value)}/>
+          <TextField id="name" label="name" variant="filled" sx={{ ml: 3 }} value={name} onChange={(e) => setValue3(e.target.value)}/>
+          <TextField id="status" label="status" variant="filled" sx={{ ml: 3 }} value={status} onChange={(e) => setValue4(e.target.value)}/>
+          <Button variant="contained" sx={{ ml: 3, mt: 2 }} onClick={handleInput}>Input</Button>
+        </Box>
         <Box sx={{ p: 3 }}>
         <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
@@ -506,17 +569,17 @@ export default function EngineeringPage() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.Date);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.Date)}
+                      onClick={(event) => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.Date}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -534,12 +597,12 @@ export default function EngineeringPage() {
                         scope="row"
                         padding="none"
                       >
-                        {row.ID}
+                        {row.date}
                       </TableCell>
-                      <TableCell align="right">{row.Type}</TableCell>
-                      <TableCell align="right">{row.Name}</TableCell>
-                      <TableCell align="right">{row.Added}</TableCell>
-                      <TableCell align="right">{row.Status}</TableCell>
+                      <TableCell align="right">{row.type}</TableCell>
+                      <TableCell align="right">{row.id}</TableCell>
+                      <TableCell align="right">{row.name}</TableCell>
+                      <TableCell align="right">{row.status}</TableCell>
                     </TableRow>
                   );
                 })}

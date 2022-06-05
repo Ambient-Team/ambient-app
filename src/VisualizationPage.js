@@ -14,6 +14,20 @@ import { AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Area, PieChart, Pie, B
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import { Sankey, RadialBarChart, RadialBar } from 'recharts';
 import Paper from '@mui/material/Paper';
+import { useState, useEffect } from "react";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
+
+const firebaseApp = initializeApp({
+  apiKey: "AIzaSyBamRPS6NxxPg7lplFrxZd36fLWg9ZUTDY",
+  authDomain: "ambient-systems.firebaseapp.com",
+  databaseURL: "https://ambient-systems-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ambient-systems",
+  storageBucket: "ambient-systems.appspot.com",
+  messagingSenderId: "1001740093061",
+  appId: "1:1001740093061:web:b516ca06c0e80199b90bec"
+});
+const firestore = getFirestore(firebaseApp);
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -43,11 +57,38 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const drawerWidth = 200;
 
+function createData(id, name, request, token) {
+  return {
+    id, 
+    name, 
+    request, 
+    token
+  };
+}
+
 export default function VisualizationPage() {
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
+
+    const [examples, setExamples] = useState([])
+
+    useEffect(() => {
+      const exampleCollectionRef = collection(firestore, 'Test')
+      const unsubscribe = onSnapshot(exampleCollectionRef, snapshot => {
+        setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+      })
+
+      return () => {
+        unsubscribe()
+      }
+    }, [])
+
+    var rows = []
+    const test = examples.map((row) => {
+          rows.push(createData(row.data.id, row.data.name, row.data.request, row.data.token))
+    })
 
     const data0 = {
         "nodes": [

@@ -11,7 +11,7 @@ import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import { fourthListItems } from "./listItems";
-import { forML } from "./Selects";
+// import { forML } from "./Selects";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl, { useFormControl } from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -24,6 +24,22 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
+import Select from '@mui/material/Select';
+import InputAdornment from '@mui/material/InputAdornment';
+import LabelIcon from '@mui/icons-material/Label';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
+
+const firebaseApp = initializeApp({
+  apiKey: "AIzaSyBamRPS6NxxPg7lplFrxZd36fLWg9ZUTDY",
+  authDomain: "ambient-systems.firebaseapp.com",
+  databaseURL: "https://ambient-systems-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ambient-systems",
+  storageBucket: "ambient-systems.appspot.com",
+  messagingSenderId: "1001740093061",
+  appId: "1:1001740093061:web:b516ca06c0e80199b90bec"
+});
+const firestore = getFirestore(firebaseApp);
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -578,43 +594,129 @@ const rows = [
   ),
 ];
 
-function MyFormHelperText() {
-  const { focused } = useFormControl() || {};
-
-  const helperText = React.useMemo(() => {
-    if (focused) {
-      return "The format for this is : TBD";
-    }
-
-    return "Or please enter the features you want manully here";
-  }, [focused]);
-
-  return <FormHelperText>{helperText}</FormHelperText>;
-}
-
 export default function MachineLearningPage() {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  const [table, setTable] = React.useState(false);
-  const handleClickOpen = () => {
-    setTable(true);
-  };
-
-  useEffect(() => {
+  // useEffect(() => {
     
-    axios
-      .get(
-        `https://us-central1-ambient-systems.cloudfunctions.net/api/connectors`, { headers: {"Authorization" : `Bearer ${window.localStorage.getItem('access_token')}`}}
-      )
-      .then((res) => {
-        setConnectors(res.data);
-      });
-  }, []);
+  //   axios
+  //     .get(
+  //       `https://us-central1-ambient-systems.cloudfunctions.net/api/connectors`, { headers: {"Authorization" : `Bearer ${window.localStorage.getItem('access_token')}`}}
+  //     )
+  //     .then((res) => {
+  //       setConnectors(res.data);
+  //     });
+  // }, []);
 
-  const [connectors, setConnectors] = useState();
+  // const [connectors, setConnectors] = useState();
+
+
+
+  const [examples, setExamples] = useState([])
+  const [examples2, setExamples2] = useState([])
+  const [examples3, setExamples3] = useState([])
+  const [examples4, setExamples4] = useState([])
+
+    // useEffect(() => {
+    //   // const testQuery = query(
+    //   //   collection(firestore, 'Test'),
+    //   //   where('id', '==', 1)
+    //   // );
+    //   const exampleCollectionRef = collection(firestore, 'Test')
+    //   const unsubscribe = onSnapshot(exampleCollectionRef, snapshot => {
+    //     setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+    //   })
+
+    //   return () => {
+    //     unsubscribe()
+    //   }
+    // }, [])
+
+    useEffect(() => {
+      const testQuery = query(
+        collection(firestore, 'Test'),
+        where('id', '==', 1)
+      );
+      // const exampleCollectionRef = collection(firestore, 'Test')
+      const unsubscribe = onSnapshot(testQuery, snapshot => {
+        setExamples2(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+      })
+
+      return () => {
+        unsubscribe()
+      }
+    }, [])
+
+    useEffect(() => {
+      const testQuery = query(
+        collection(firestore, 'Test'),
+        where('id', '==', 2)
+      );
+      // const exampleCollectionRef = collection(firestore, 'Test')
+      const unsubscribe = onSnapshot(testQuery, snapshot => {
+        setExamples3(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+      })
+
+      return () => {
+        unsubscribe()
+      }
+    }, [])
+
+    useEffect(() => {
+      const testQuery = query(
+        collection(firestore, 'Test'),
+        where('id', '==', 0)
+      );
+      // const exampleCollectionRef = collection(firestore, 'Test')
+      const unsubscribe = onSnapshot(testQuery, snapshot => {
+        setExamples4(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+      })
+
+      return () => {
+        unsubscribe()
+      }
+    }, [])
+
+    const [value1, setValue1] = useState();
+    const [value2, setValue2] = useState();
+    const [value3, setValue3] = useState();
+
+    function handleSelect(e) {
+      e.preventDefault()
+      if (value1 === undefined && value2 === undefined && value3 === undefined) {
+        alert("Please choose 1")
+        return 
+      }
+
+      var arr = []
+      if (value1 !== undefined && value1 !== "") {
+        arr.push(Number(value1))
+      }
+      if (value2 !== undefined && value2 !== "") {
+        arr.push(Number(value2))
+      }
+      if (value3 !== undefined && value3 !== "") {
+        arr.push(Number(value3))
+      }
+
+      const testQuery = query(
+        collection(firestore, 'Test'),
+        where('id', 'in', arr)
+      );
+
+      const unsubscribe = onSnapshot(testQuery, snapshot => {
+        setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+      })
+
+      return () => {
+        unsubscribe()
+      }
+    }
+
+    const [feature, setFeature] = useState();
 
   return (
     <Box sx={{ display: "flex", height: "100%" }}>
@@ -661,16 +763,72 @@ export default function MachineLearningPage() {
             Relation Discovery
           </Typography>
         </Box>
-        <Box sx={{ width: "100%", display: "flex" }}>{forML}</Box>
-        <Box
-          component="form"
-          noValidate
-          autoComplete="off"
-          sx={{ mt: 3, ml: 8 }}
-        >
-          <FormControl sx={{ width: "100ch" }}>
-            <OutlinedInput placeholder="Other features" />
-            <MyFormHelperText />
+        <Box sx={{ width: "100%", display: "flex" }}>
+          <FormControl sx={{ ml: 8, minWidth: 200 }} variant= "standard">
+            {examples2?.map((row) => (
+            <Select native defaultValue="" id="grouped-native-select" label="Select feature1" disableUnderline startAdornment={
+                <InputAdornment position="start">
+                  <LabelIcon style={{ color: "#00bcd4"}}/>
+                </InputAdornment>
+              }
+              style={{
+                borderRadius: 25,
+                backgroundColor: "#031c4a",
+                padding: "6px 15px",
+            }}
+            value={value1}
+            onChange={(e) => {setValue1(e.target.value)}}>
+              <option aria-label="None" value="">Select feature1</option>
+                <option value={row.data.id}>{row.data.id}</option>
+                {/* <option value={row.data.name}>{row.data.name}</option>
+                <option value={row.data.request}>{row.data.request}</option>
+                <option value={row.data.token}>{row.data.token}</option> */}
+            </Select>
+            ))}
+          </FormControl>
+          <FormControl sx={{ ml: 3, minWidth: 200 }} variant= "standard">
+          {examples3?.map((row) => (
+            <Select native defaultValue="" id="grouped-native-select" label="Select feature1" disableUnderline startAdornment={
+                <InputAdornment position="start">
+                  <LabelIcon style={{ color: "#00bcd4"}}/>
+                </InputAdornment>
+              }
+              style={{
+                borderRadius: 25,
+                backgroundColor: "#031c4a",
+                padding: "6px 15px",
+            }}
+            value={value2}
+            onChange={(e) => {setValue2(e.target.value)}}>
+              <option aria-label="None" value="">Select feature2</option>
+                <option value={row.data.id}>{row.data.id}</option>
+                {/* <option value={row.data.name}>{row.data.name}</option>
+                <option value={row.data.request}>{row.data.request}</option>
+                <option value={row.data.token}>{row.data.token}</option> */}
+            </Select>
+            ))}
+          </FormControl>
+          <FormControl sx={{ ml: 3, minWidth: 200 }} variant= "standard">
+            {examples4?.map((row) => (
+              <Select native defaultValue="" id="grouped-native-select" label="Select feature1" disableUnderline startAdornment={
+                  <InputAdornment position="start">
+                    <LabelIcon style={{ color: "#00bcd4"}}/>
+                  </InputAdornment>
+                }
+                style={{
+                  borderRadius: 25,
+                  backgroundColor: "#031c4a",
+                  padding: "6px 15px",
+              }}
+              value={value3}
+              onChange={(e) => {setValue3(e.target.value)}}>
+                <option aria-label="None" value="">Select feature3</option>
+                  <option value={row.data.id}>{row.data.id}</option>
+                  {/* <option value={row.data.name}>{row.data.name}</option>
+                  <option value={row.data.request}>{row.data.request}</option>
+                  <option value={row.data.token}>{row.data.token}</option> */}
+              </Select>
+              ))}
           </FormControl>
         </Box>
         <Box>
@@ -679,7 +837,7 @@ export default function MachineLearningPage() {
             color="primary"
             sx={{ mt: 3, ml: 8, borderRadius: 5 }}
             position="absolute"
-            onClick={handleClickOpen}
+            onClick={handleSelect}
           >
             Generate result
           </Button>
@@ -693,9 +851,10 @@ export default function MachineLearningPage() {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell>Data type</TableCell>
+                  <TableCell>id</TableCell>
                   <TableCell align="right">name</TableCell>
-                  <TableCell align="right">status</TableCell>
+                  <TableCell align="right">request</TableCell>
+                  <TableCell align="right">token</TableCell>
                   {/* <TableCell align="right">
                     Cooling:Electricity [kW](Hourly)
                   </TableCell>
@@ -705,16 +864,17 @@ export default function MachineLearningPage() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {connectors?.map((row) => (
+                {examples?.map((row) => (
                   <TableRow
-                    key={row.name}
+                    key={row.data.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {row.dataType}
+                      {row.data.id}
                     </TableCell>
-                    <TableCell align="right">{row.name}</TableCell>
-                    <TableCell align="right">{row.status}</TableCell>
+                    <TableCell align="right">{row.data.name}</TableCell>
+                    <TableCell align="right">{row.data.request}</TableCell>
+                    <TableCell align="right">{row.data.token}</TableCell>
                     {/* <TableCell align="right">{row.Cooling}</TableCell>
                     <TableCell align="right">{row.HeatingE}</TableCell> */}
                   </TableRow>

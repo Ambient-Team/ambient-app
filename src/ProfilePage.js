@@ -27,7 +27,6 @@ import Button from '@mui/material/Button';
 // Import firebase functions to use
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
-import { func } from 'prop-types';
 
 // These parameters let us connect to our project
 const firebaseApp = initializeApp({
@@ -159,6 +158,10 @@ export default function ProfilePage() {
     const [examples, setExamples] = useState([])
 
     useEffect(() => {
+      // const testQuery = query(
+      //   collection(firestore, 'Test'),
+      //   where('id', '==', 1)
+      // );
       const exampleCollectionRef = collection(firestore, 'Test')
       const unsubscribe = onSnapshot(exampleCollectionRef, snapshot => {
         setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
@@ -177,18 +180,18 @@ export default function ProfilePage() {
     //   console.log(examples)
     // }, [examples])
 
-    function getExamples() {
-      const exampleCollectionRef = collection(firestore, 'Test')
-      getDocs(exampleCollectionRef)
-        .then(response => {
-          const example = response.docs.map(doc => ({
-            data: doc.data(), 
-            id: doc.id,
-          }))
-          setExamples(example)
-        })
-        .catch(error => console.log(error.message))
-    }
+    // function getExamples() {
+    //   const exampleCollectionRef = collection(firestore, 'Test')
+    //   getDocs(exampleCollectionRef)
+    //     .then(response => {
+    //       const example = response.docs.map(doc => ({
+    //         data: doc.data(), 
+    //         id: doc.id,
+    //       }))
+    //       setExamples(example)
+    //     })
+    //     .catch(error => console.log(error.message))
+    // }
 
     const [input, setInput] = useState([])
     const [name, setValue1] = useState();

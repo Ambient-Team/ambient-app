@@ -241,7 +241,7 @@ function DashboardContent() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><ButtonBase href='Dashboard/Profile'>Profile</ButtonBase></MenuItem>
+      <MenuItem onClick={handleMenuClose}><ButtonBase href='Profile'>Profile</ButtonBase></MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
     </Menu>

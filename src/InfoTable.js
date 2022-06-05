@@ -19,6 +19,20 @@ import CachedIcon from '@mui/icons-material/Cached';
 import Button from '@mui/material/Button';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
 import FormDialog from './Dialog'
+import { useState, useEffect } from "react";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
+
+const firebaseApp = initializeApp({
+  apiKey: "AIzaSyBamRPS6NxxPg7lplFrxZd36fLWg9ZUTDY",
+  authDomain: "ambient-systems.firebaseapp.com",
+  databaseURL: "https://ambient-systems-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ambient-systems",
+  storageBucket: "ambient-systems.appspot.com",
+  messagingSenderId: "1001740093061",
+  appId: "1:1001740093061:web:b516ca06c0e80199b90bec"
+});
+const firestore = getFirestore(firebaseApp);
 
 // function generate(element) {
 //   return [0, 1, 2].map((value) =>
@@ -35,6 +49,22 @@ const Demo = styled('div')(({ theme }) => ({
 export default function InfoTable1() {
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
+
+  const [examples, setExamples] = useState([])
+
+  useEffect(() => {
+    const testQuery = query(
+      collection(firestore, 'Test'),
+    );
+
+    const unsubscribe = onSnapshot(testQuery, snapshot => {
+      setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [])
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -72,8 +102,9 @@ export default function InfoTable1() {
           </Typography>
         <Divider sx={{ my: 1 }} />
         <Demo sx= {{ mt: 1, ml: 1, mr: 1, height: 230, borderRadius: 5 }}>
+        <Box sx={{ minHeight: 240 }}>
         <List dense={dense}>
-            {/* {generate( */}
+          {examples?.map((row) => (
                 <ListItem sx={{ mt: -1, mb: -1 }}
                   secondaryAction={
                     <IconButton edge="end" aria-label="delete">
@@ -81,29 +112,19 @@ export default function InfoTable1() {
                     </IconButton>
                   }
                 >
-                  {/* <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar> */}
                   <ListItemText
-                    primary="Building management system"
+                    primary={row.data.request}
                     secondary={secondary ? 'Secondary text' : null}
                   />
                 </ListItem>
-               {/* )} */}
-               <ListItem sx={{ mt: -1, mb: -1 }}
+            ))}
+               {/* <ListItem sx={{ mt: -1, mb: -1 }}
                   secondaryAction={
                     <IconButton edge="end" aria-label="delete">
                       <CheckCircleIcon color="warning" />
                     </IconButton>
                   }
                 >
-                  {/* <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar> */}
                   <ListItemText
                     primary="Enterprise resouce planning"
                     secondary={secondary ? 'Secondary text' : null}
@@ -116,11 +137,6 @@ export default function InfoTable1() {
                     </IconButton>
                   }
                 >
-                  {/* <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar> */}
                   <ListItemText
                     primary="CMMS"
                     secondary={secondary ? 'Secondary text' : null}
@@ -133,11 +149,6 @@ export default function InfoTable1() {
                     </IconButton>
                   }
                 >
-                  {/* <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar> */}
                   <ListItemText
                     primary="Climate risks - Transition"
                     secondary={secondary ? 'Secondary text' : null}
@@ -150,20 +161,13 @@ export default function InfoTable1() {
                     </IconButton>
                   }
                 >
-                  {/* <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar> */}
                   <ListItemText
                     primary="Climate risks - Physical"
                     secondary={secondary ? 'Secondary text' : null}
                   />
-                </ListItem>
+                </ListItem> */}
             </List>
-            {/* <Button variant="contained" endIcon={<AddSharpIcon />} color="primary" sx={{ mt: 5, ml: 11, borderRadius: 5 }} position="absolute">
-              Add request
-            </Button> */}
+            </Box>
           <FormDialog />
           </Demo>
     </Box>
