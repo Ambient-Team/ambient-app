@@ -24,74 +24,74 @@ import { Link } from 'react-router-dom'
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton>
-    <Link to = "/Dashboard/Overview" >
-    <ButtonBase  fullWidth>
+    {/* <Link to = "/Dashboard/Overview" > */}
+    <ButtonBase href="/Dashboard/Overview" fullWidth>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Overview" />
     </ButtonBase>
-    </Link>
+    {/* </Link> */}
     </ListItemButton>
     <ListItemButton>
-    <Link to = "/Dashboard/Goal" >
-    <ButtonBase fullWidth>
+    {/* <Link to = "/Dashboard/Goal" > */}
+    <ButtonBase  href="/Dashboard/Goal" fullWidth>
       <ListItemIcon>
       <TrackChangesIcon />
       </ListItemIcon>
       <ListItemText primary="Goals"></ListItemText>
     </ButtonBase>
-    </Link>
+    {/* </Link> */}
     </ListItemButton>
     <ListItemButton>
-    <Link to = "/Dashboard/Engineering" >
-    <ButtonBase  fullWidth>
+    {/* <Link to = "/Dashboard/Engineering" > */}
+    <ButtonBase href="/Dashboard/Engineering" fullWidth>
       <ListItemIcon>
         <StorageIcon />
       </ListItemIcon>
       <ListItemText primary="Data Engineering" />
       </ButtonBase>
-      </Link>
+      {/* </Link> */}
     </ListItemButton>
     <ListItemButton>
-    <Link to = "/Dashboard/Visualization" >
-    <ButtonBase  fullWidth>
+    {/* <Link to = "/Dashboard/Visualization" > */}
+    <ButtonBase href="/Dashboard/Visualization" fullWidth>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Data Visualization" />
     </ButtonBase>
-    </Link>
+    {/* </Link> */}
     </ListItemButton>
     <ListItemButton>
-    <Link to = "/Dashboard/ML" >
-    <ButtonBase  fullWidth>
+    {/* <Link to = "/Dashboard/ML" > */}
+    <ButtonBase href="/Dashboard/ML" fullWidth>
       <ListItemIcon>
         <AccountTreeIcon />
       </ListItemIcon>
       <ListItemText primary="Machine Learning" />
       </ButtonBase>
-      </Link>
+      {/* </Link> */}
     </ListItemButton>
     <ListItemButton>
-    <Link to = "/Dashboard/Output" >
-    <ButtonBase  fullWidth>
+    {/* <Link to = "/Dashboard/Output" > */}
+    <ButtonBase href="/Dashboard/Output" fullWidth>
       <ListItemIcon>
         <FolderIcon />
       </ListItemIcon>
       <ListItemText primary="Output" />
       </ButtonBase>
-      </Link>
+      {/* </Link> */}
     </ListItemButton>
     <ListItemButton>
-    <Link to = "/Dashboard/Profile" >
-    <ButtonBase  fullWidth>
+    {/* <Link to = "/Dashboard/Profile" > */}
+    <ButtonBase href="/Dashboard/Profile" fullWidth>
       <ListItemIcon>
         <PersonIcon />
       </ListItemIcon>
       <ListItemText primary="Profile" />
       </ButtonBase>
-      </Link>
+      {/* </Link> */}
     </ListItemButton>
   </React.Fragment>
 );
