@@ -97,3 +97,75 @@ exports.signUpUser = (request, response) => {
 			}
 		});
 }
+
+
+exports.getAllUsers = (request, response) =>{
+    db.collection("users")
+    .get()
+    .then((data) => {
+    let users = [];
+      data.forEach((doc) => {
+        users.push({
+          idGen: doc.id,
+          id: doc.data().userId,
+          firstName: doc.data().firstName,
+          lastName: doc.data().lastName,
+          email: doc.data().email,
+          organization: doc.data()?.organization,
+          country: doc.data().country,
+        });
+      });
+      return response.json(users);
+    })
+    .catch((err) => {
+      console.error(err);
+      return response.status(500).json({ error: err.code });
+    });
+
+}
+
+exports.updateUser = (request, response) => {
+    const organization = {
+        name : request.body.name,
+        createdAt: new Date()
+    }
+    const user = db.collection("users").doc(request.body.id).update({organization: organization});
+    return response.json(user);
+}
+
+// exports.updateUser = (request, response) => {
+//     const user = {
+//         email: request.body.email,
+//         password: request.body.password
+//     }
+
+//     const { valid, errors } = validateLoginData(user);
+// 	if (!valid) return response.status(400).json(errors);
+
+//     const userForUpdate = db.collection("users")
+//     .doc("1326320004@qq.com");
+
+//     userForUpdate.get().then(() => { userForUpdate.update({organization})})
+//     userForUpdate.then((doc) => {
+//       const responseConnector = newConnector;
+//       return response.json(responseConnector);
+//     })
+//     .catch((err) => {
+//       response.status(500).json({ error: "Something went wrong" });
+//       console.error(err);
+//     });
+
+//     firebase
+//         .auth()
+//         .signInWithEmailAndPassword(user.email, user.password)
+//         .then((data) => {
+//             return data.user.getIdToken();
+//         })
+//         .then((token) => {
+//             return response.json({ token });
+//         })
+//         .catch((error) => {
+//             console.error(error);
+//             return response.status(403).json({ general: 'wrong credentials, please try again'});
+//         })
+// };
