@@ -154,22 +154,28 @@ export const fourthListItems = (
       Sub-bar
     </ListSubheader> */}
     <ListItemButton>
+    <ButtonBase href="/Dashboard/ML" fullWidth>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Relation Discovery" />
+      </ButtonBase>
     </ListItemButton>
     <ListItemButton>
+    <ButtonBase href="/Dashboard/ML/Recommendation" fullWidth>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="TBD" />
+      <ListItemText primary="Recommendation" />
+      </ButtonBase>
     </ListItemButton>
     <ListItemButton>
+    <ButtonBase href="/Dashboard/ML/GraphModel" fullWidth>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="TBD" />
+      <ListItemText primary="Graph Model" />
+      </ButtonBase>
     </ListItemButton>
   </React.Fragment>
 );
@@ -190,6 +196,38 @@ export const fifthListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Settings" />
+    </ListItemButton>
+  </React.Fragment>
+);
+
+export const sixthListItems = (
+  <React.Fragment>
+    {/* <ListSubheader component="div" inset>
+      Sub-bar
+    </ListSubheader> */}
+    <ListItemButton>
+    <ButtonBase href="/Dashboard/Output" fullWidth>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Relation Discovery" />
+      </ButtonBase>
+    </ListItemButton>
+    <ListItemButton>
+    <ButtonBase href="/Dashboard/Output/Recommendation" fullWidth>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Recommendation" />
+      </ButtonBase>
+    </ListItemButton>
+    <ListItemButton>
+    <ButtonBase href="/Dashboard/Output/GraphModel" fullWidth>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Graph Model" />
+      </ButtonBase>
     </ListItemButton>
   </React.Fragment>
 );

@@ -10,11 +10,6 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import { sixthListItems } from './listItems';
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -43,24 +38,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   );
 
 const drawerWidth = 220;
-
-function createData(feature1, feature2, score
-) {
-  return {
-    feature1, feature2, score
-  };
-}
-
-const rows = [
-  createData("Gas:Facility", "Heating:Gas", "High(0.98)"),
-  createData("Electricity:Facility", "InteriorLights:Electricity", "High(0.97)"),
-  createData("Electricity:Facility", "InteriorLights:Electricity", "High(0.95)"),
-  createData("InteriorEquipment:Electricity", "InteriorLights:Electricity", "High(0.92)"),
-  createData("Gas:Facility", "InteriorLights:Electricity", "Low(0.13)"),
-  createData("Gas:Facility", "InteriorEquipment:Electricity", "Low(0.12)"),
-  createData("Gas:Facility", "Electricity:Facility", "Low(0.081)"),
-  createData("Electricity:Facility", "Cooling:Electricity", "Low(0.045)"),
-]
 
 export default function OutputPage() {
     const [open, setOpen] = React.useState(false);
@@ -99,7 +76,7 @@ export default function OutputPage() {
                         noWrap
                         sx={{ flexGrow: 1, mt: 3, ml: 8 }}
                         >
-                        Ambient / Output / Relation Discovery
+                        Ambient / Output / Graph Model
                     </Typography>
                     <Typography
                         component="h1"
@@ -108,7 +85,7 @@ export default function OutputPage() {
                         noWrap
                         sx={{ flexGrow: 1, ml: 8, mb: 2 }}
                         >
-                        Relations
+                        Route Plan
                     </Typography>
 
                     <Typography
@@ -120,54 +97,61 @@ export default function OutputPage() {
                     >
                       Results:
                     </Typography>
-                </Box>
-                <Box sx={{ mt: 1, ml: 8 }}>
-                  <Table
-                    sx={{ minWidth: 650 }}
-                    size="small"
-                    aria-label="a dense table"
-                  >
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Feature1</TableCell>
-                        <TableCell align="right">Feature2</TableCell>
-                        <TableCell align="right">Level/Score</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {rows?.map((row) => (
-                        <TableRow
-                          key={row.Date}
-                          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                        sx={{ flexGrow: 1, ml: 8, mb: 2 }}
                         >
-                          <TableCell component="th" scope="row">
-                            {row.feature1}
-                          </TableCell>
-                          <TableCell align="right">{row.feature2}</TableCell>
-                          <TableCell align="right">{row.score}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </Box>
-
-                <Box>
-                  <div id="output"></div>
-                    {/* <py-script output="output">
-import pandas as pd;
-import matplotlib.pyplot as plt;
-import numpy as np;
-
-data = pd.read_csv('data.csv');
-
-data = data.drop(['Heating:Electricity [kW](Hourly)'],axis=1);
-
-data = data.drop(['Date/Time'], axis=1);
-
-fig, ax = plt.subplots();
-ax.boxplot(data);
-fig
-                    </py-script> */}
+                        Path from source 
+                    </Typography>
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="#00c853"
+                        noWrap
+                        sx={{ flexGrow: 1, ml: 8, mb: 2 }}
+                        >
+                        g 
+                    </Typography>
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                        sx={{ flexGrow: 1, ml: 8, mb: 2 }}
+                        >
+                        to destination 
+                    </Typography>
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="#FF5722"
+                        noWrap
+                        sx={{ flexGrow: 1, ml: 8, mb: 2 }}
+                        >
+                        f 
+                    </Typography>
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                        sx={{ flexGrow: 1, ml: 8, mb: 2 }}
+                        >
+                        with minimum time cost: g -{'>'} h -{'>'} d -{'>'}  a -{'>'}  c -{'>'} f 
+                    </Typography>
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                        sx={{ flexGrow: 1, ml: 8, mb: 2 }}
+                        >
+                        with time cost = 7 
+                    </Typography>
                 </Box>
             </Box>
         </Box>

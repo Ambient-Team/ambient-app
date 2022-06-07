@@ -44,25 +44,27 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const drawerWidth = 220;
 
-function createData(feature1, feature2, score
+function createData(rank, product, param
 ) {
   return {
-    feature1, feature2, score
+    rank, product, param
   };
 }
 
 const rows = [
-  createData("Gas:Facility", "Heating:Gas", "High(0.98)"),
-  createData("Electricity:Facility", "InteriorLights:Electricity", "High(0.97)"),
-  createData("Electricity:Facility", "InteriorLights:Electricity", "High(0.95)"),
-  createData("InteriorEquipment:Electricity", "InteriorLights:Electricity", "High(0.92)"),
-  createData("Gas:Facility", "InteriorLights:Electricity", "Low(0.13)"),
-  createData("Gas:Facility", "InteriorEquipment:Electricity", "Low(0.12)"),
-  createData("Gas:Facility", "Electricity:Facility", "Low(0.081)"),
-  createData("Electricity:Facility", "Cooling:Electricity", "Low(0.045)"),
+  createData("rank1", "Led bulkhead - 20W - 1100 lm - 4000K - IP54 body - rectangle", "PDLE385C-AW"),
+  createData("rank2", "Batten Lampholder, Lighting, 230/240VAC, 150W", "PDL29LWH"),
+  createData("rank3", "Unswitched Cordgrip Lampholder- 1 phase - 3A - 250V - 150W", "PDL26WH"),
+  createData("rank4", "PDL Iconic, cover frame, 6 switches, vertical", "PDLE386C-AW"),
+  createData("rank5", "PDL Iconic, knob for cover frame, Iconic Essence", "PDLE300KBC-AG"),
+  createData("rank6", "PDL Iconic Essence Single Power Point Skin with 1 extra switch, Horizontal Mount, 250V, 10A", "PDLE395H4C-AW"),
+  createData("rank7", "PDL Iconic, cover frame, 5 switches, vertical", "PDLE385C-AW"),
+  createData("rank8", "PDL Iconic - Skin Connected Socket Double", "PDLE395CSC-AW"),
+  createData("rank9", "Led Flood Light, 20 W, 1800 lm, 4000 K, IP65", "CLITPFLS20LED"),
+  createData("rank10", "Led DownLight - 9W - 3000K - IP44", "PDLE300KBC-AG"),
 ]
 
-export default function OutputPage() {
+export default function RecommendationOutput() {
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -99,7 +101,7 @@ export default function OutputPage() {
                         noWrap
                         sx={{ flexGrow: 1, mt: 3, ml: 8 }}
                         >
-                        Ambient / Output / Relation Discovery
+                        Ambient / Output / Recommendation
                     </Typography>
                     <Typography
                         component="h1"
@@ -108,7 +110,7 @@ export default function OutputPage() {
                         noWrap
                         sx={{ flexGrow: 1, ml: 8, mb: 2 }}
                         >
-                        Relations
+                        Recommendation
                     </Typography>
 
                     <Typography
@@ -129,9 +131,9 @@ export default function OutputPage() {
                   >
                     <TableHead>
                       <TableRow>
-                        <TableCell>Feature1</TableCell>
-                        <TableCell align="right">Feature2</TableCell>
-                        <TableCell align="right">Level/Score</TableCell>
+                        <TableCell>Rank Level</TableCell>
+                        <TableCell align="right">Product</TableCell>
+                        <TableCell align="right">Number</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -141,33 +143,14 @@ export default function OutputPage() {
                           sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                         >
                           <TableCell component="th" scope="row">
-                            {row.feature1}
+                            {row.rank}
                           </TableCell>
-                          <TableCell align="right">{row.feature2}</TableCell>
-                          <TableCell align="right">{row.score}</TableCell>
+                          <TableCell align="right">{row.product}</TableCell>
+                          <TableCell align="right">{row.param}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
-                </Box>
-
-                <Box>
-                  <div id="output"></div>
-                    {/* <py-script output="output">
-import pandas as pd;
-import matplotlib.pyplot as plt;
-import numpy as np;
-
-data = pd.read_csv('data.csv');
-
-data = data.drop(['Heating:Electricity [kW](Hourly)'],axis=1);
-
-data = data.drop(['Date/Time'], axis=1);
-
-fig, ax = plt.subplots();
-ax.boxplot(data);
-fig
-                    </py-script> */}
                 </Box>
             </Box>
         </Box>

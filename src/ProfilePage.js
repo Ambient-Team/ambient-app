@@ -26,7 +26,7 @@ import Button from '@mui/material/Button';
 
 // Import firebase functions to use
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
+import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs, orderBy, limit } from 'firebase/firestore'
 
 // These parameters let us connect to our project
 const firebaseApp = initializeApp({
@@ -158,12 +158,14 @@ export default function ProfilePage() {
     const [examples, setExamples] = useState([])
 
     useEffect(() => {
-      // const testQuery = query(
-      //   collection(firestore, 'Test'),
-      //   where('id', '==', 1)
-      // );
-      const exampleCollectionRef = collection(firestore, 'Test')
-      const unsubscribe = onSnapshot(exampleCollectionRef, snapshot => {
+      const testQuery = query(
+        collection(firestore, 'Test'),
+        // where('id', '==', 1)
+        orderBy("id", "desc"), 
+        limit(3)
+      );
+      // const exampleCollectionRef = collection(firestore, 'Test')
+      const unsubscribe = onSnapshot(testQuery, snapshot => {
         setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
       })
 
@@ -256,7 +258,7 @@ export default function ProfilePage() {
                         Personal Info
                     </Typography>
                 </Box>
-                <Box>
+                {/* <Box>
                 <TableContainer component={Paper} sx={{ mt: 3, ml: 8 }}>
                   <Table sx={{ minWidth: 650 }} size="small">
                     <TableHead>
@@ -287,7 +289,7 @@ export default function ProfilePage() {
                   <TextField id="name" label="name" variant="filled" value={name} onChange={(e) => setValue1(e.target.value)}/>
                   <TextField id="request" label="request" variant="filled" sx={{ ml: 3 }} value={request} onChange={(e) => setValue2(e.target.value)}/>
                   <Button variant="contained" sx={{ ml: 3, mt: 2 }} onClick={handleInput}>Input</Button>
-                </Box>
+                </Box> */}
               </Box>
         </Box>
     );

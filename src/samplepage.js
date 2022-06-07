@@ -312,7 +312,7 @@ export default function EngineeringPage() {
 
     var rows = []
     const test = examples.map((row) => {
-          rows.push(createData(Date(row.data.dataEdit).toString(), row.data.dataType, row.data.id, row.data.name, row.data.status))
+          rows.push(createData(row.data.dataEdit.toDate().toString(), row.data.dataType, row.data.id, row.data.name, row.data.status))
     })
 
     const [dataType, setValue1] = useState();

@@ -19,6 +19,10 @@ import MachineLearningPage from './MachineLearningPage';
 import OutputPage from './OutputPage';
 import ProfilePage from './ProfilePage';
 import VisualizationPage from './VisualizationPage';
+import RecommendationPage from './RecommandationPage';
+import GraphModelPage from './GraphModelPage';
+import RecommendationOutput from './RecommandationOutput';
+import GraphModelOutput from './GraphModelOutput';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -36,7 +40,11 @@ root.render(
                 <Route  path='Engineering' element={<EngineeringPage />} />
                 <Route  path='Visualization' element={<VisualizationPage />} />
                 <Route  path='ML' element={<MachineLearningPage />} />
+                  <Route  path='/Dashboard/ML/Recommendation' element={<RecommendationPage />} />
+                  <Route  path='/Dashboard/ML/GraphModel' element={<GraphModelPage />} />
                 <Route  path='Output' element={<OutputPage />} />
+                  <Route  path='/Dashboard/Output/Recommendation' element={<RecommendationOutput />} />
+                  <Route  path='/Dashboard/Output/GraphModel' element={<GraphModelOutput />} />
                 <Route  path='Profile' element={<ProfilePage />} />
               </ Route>
             </Routes>
