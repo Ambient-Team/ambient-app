@@ -10,11 +10,11 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import { fourthListItems } from "./listItems";
-// import { forML } from "./Selects";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl, { useFormControl } from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -23,30 +23,26 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import axios from "axios";
 import Select from '@mui/material/Select';
-import InputAdornment from '@mui/material/InputAdornment';
-import LabelIcon from '@mui/icons-material/Label';
 import CircularProgress from '@mui/material/CircularProgress';
 import { green } from '@mui/material/colors';
-import Fab from '@mui/material/Fab';
-// import { Link } from 'react-router-dom'
 import ButtonBase from '@mui/material/ButtonBase';
 import Link from '@mui/material/Link';
-import { ScatterChart, XAxis, YAxis, ZAxis, Tooltip, Scatter, Legend, CartesianGrid } from 'recharts';
-// import { initializeApp } from 'firebase/app';
-// import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
+import { ScatterChart, XAxis, YAxis, ZAxis, Tooltip, Scatter, Legend, CartesianGrid, ReferenceArea } from 'recharts';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, onSnapshot, query } from 'firebase/firestore'
 
-// const firebaseApp = initializeApp({
-//   apiKey: "AIzaSyBamRPS6NxxPg7lplFrxZd36fLWg9ZUTDY",
-//   authDomain: "ambient-systems.firebaseapp.com",
-//   databaseURL: "https://ambient-systems-default-rtdb.asia-southeast1.firebasedatabase.app",
-//   projectId: "ambient-systems",
-//   storageBucket: "ambient-systems.appspot.com",
-//   messagingSenderId: "1001740093061",
-//   appId: "1:1001740093061:web:b516ca06c0e80199b90bec"
-// });
-// const firestore = getFirestore(firebaseApp);
+// Connect to current firebase project
+const firebaseApp = initializeApp({
+  apiKey: "AIzaSyBamRPS6NxxPg7lplFrxZd36fLWg9ZUTDY",
+  authDomain: "ambient-systems.firebaseapp.com",
+  databaseURL: "https://ambient-systems-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ambient-systems",
+  storageBucket: "ambient-systems.appspot.com",
+  messagingSenderId: "1001740093061",
+  appId: "1:1001740093061:web:b516ca06c0e80199b90bec"
+});
+const firestore = getFirestore(firebaseApp);
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -601,6 +597,8 @@ const rows = [
   // ),
 ];
 
+
+// Main function of this page
 export default function MachineLearningPage() {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -609,6 +607,7 @@ export default function MachineLearningPage() {
 
   const [show, setShow] = useState(false);
 
+  // Sample data for demo now, will be removed in the future
   const data01 = [
     {
       x: -0.377594,
@@ -669,128 +668,149 @@ export default function MachineLearningPage() {
       </text>
     );
   };
-  
-  
-  // useEffect(() => {
-    
-  //   axios
-  //     .get(
-  //       `https://us-central1-ambient-systems.cloudfunctions.net/api/connectors`, { headers: {"Authorization" : `Bearer ${window.localStorage.getItem('access_token')}`}}
-  //     )
-  //     .then((res) => {
-  //       setConnectors(res.data);
-  //     });
-  // }, []);
 
-  // const [connectors, setConnectors] = useState();
+  const sectorWidth =20;
+  const sectorHeight =20;
+  let sectors = []
+  let sector = 0;
+  let counts=
+  [1.0,
+    0.7128,
+    0.0448,
+    0.9698,
+    0.9477,
+    0.0813,
+    0.229,
+    0.629,
+    0.7381,
+    0.7128,
+    1.0,
+    0.3009,
+    0.6702,
+    0.6512,
+    0.4833,
+    0.5482,
+    0.38,
+    0.4383,
+    0.0448,
+    0.3009,
+    1.0,
+    0.1779,
+    0.1809,
+    0.7015,
+    0.6935,
+    0.151,
+    0.0567,
+    0.9698,
+    0.6702,
+    0.1779,
+    1.0,
+    0.9206,
+    0.1347,
+    0.2718,
+    0.6007,
+    0.6864,
+    0.9477,
+    0.6512,
+    0.1809,
+    0.9206,
+    1.0,
+    0.1245,
+    0.2752,
+    0.6618,
+    0.7225,
+    0.0813,
+    0.4833,
+    0.7015,
+    0.1347,
+    0.1245,
+    1.0,
+    0.9774,
+    0.1803,
+    0.0161,
+    0.229,
+    0.5482,
+    0.6935,
+    0.2718,
+    0.2752,
+    0.9774,
+    1.0,
+    0.3802,
+    0.1275,
+    0.629,
+    0.38,
+    0.151,
+    0.6007,
+    0.6618,
+    0.1803,
+    0.3802,
+    1.0,
+    0.5094,
+    0.7381,
+    0.4383,
+    0.0567,
+    0.6864,
+    0.7225,
+    0.0161,
+    0.1275,
+    0.5094,
+    1.0]
+    let data1 = []
 
-
-
-  // const [examples, setExamples] = useState([])
-  // const [examples2, setExamples2] = useState([])
-  // const [examples3, setExamples3] = useState([])
-  // const [examples4, setExamples4] = useState([])
-
-    // useEffect(() => {
-    //   // const testQuery = query(
-    //   //   collection(firestore, 'Test'),
-    //   //   where('id', '==', 1)
-    //   // );
-    //   const exampleCollectionRef = collection(firestore, 'Test')
-    //   const unsubscribe = onSnapshot(exampleCollectionRef, snapshot => {
-    //     setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
-    //   })
-
-    //   return () => {
-    //     unsubscribe()
-    //   }
-    // // }, [])
-
-    // useEffect(() => {
-    //   const testQuery = query(
-    //     collection(firestore, 'Test'),
-    //     where('id', '==', 1)
-    //   );
-    //   // const exampleCollectionRef = collection(firestore, 'Test')
-    //   const unsubscribe = onSnapshot(testQuery, snapshot => {
-    //     setExamples2(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
-    //   })
-
-    //   return () => {
-    //     unsubscribe()
-    //   }
-    // }, [])
-
-    // useEffect(() => {
-    //   const testQuery = query(
-    //     collection(firestore, 'Test'),
-    //     where('id', '==', 2)
-    //   );
-    //   // const exampleCollectionRef = collection(firestore, 'Test')
-    //   const unsubscribe = onSnapshot(testQuery, snapshot => {
-    //     setExamples3(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
-    //   })
-
-    //   return () => {
-    //     unsubscribe()
-    //   }
-    // }, [])
-
-    // useEffect(() => {
-    //   const testQuery = query(
-    //     collection(firestore, 'Test'),
-    //     where('id', '==', 0)
-    //   );
-    //   // const exampleCollectionRef = collection(firestore, 'Test')
-    //   const unsubscribe = onSnapshot(testQuery, snapshot => {
-    //     setExamples4(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
-    //   })
-
-    //   return () => {
-    //     unsubscribe()
-    //   }
-    // }, [])
-
-    // const [value1, setValue1] = useState();
-    // const [value2, setValue2] = useState();
-    // const [value3, setValue3] = useState();
-
-    // function handleSelect(e) {
-    //   e.preventDefault()
-    //   if (value1 === undefined && value2 === undefined && value3 === undefined) {
-    //     alert("Please choose 1")
-    //     return 
-    //   }
-
-    //   var arr = []
-    //   if (value1 !== undefined && value1 !== "") {
-    //     arr.push(Number(value1))
-    //   }
-    //   if (value2 !== undefined && value2 !== "") {
-    //     arr.push(Number(value2))
-    //   }
-    //   if (value3 !== undefined && value3 !== "") {
-    //     arr.push(Number(value3))
-    //   }
-
-    //   const testQuery = query(
-    //     collection(firestore, 'Test'),
-    //     where('id', 'in', arr)
-    //   );
-
-    //   const unsubscribe = onSnapshot(testQuery, snapshot => {
-    //     setExamples(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
-    //   })
-
-    //   return () => {
-    //     unsubscribe()
-    //   }
-    // }
-
-    // const [feature, setFeature] = useState();
+    const formatx = (x) => {
+      switch(x) {
+        case 0:
+          return ' ';
+        case 20:
+          return 'E:F';
+        case 40:
+              return 'F:E';
+        case 60:
+              return 'C:E';
+        case 80:
+            return 'IL:E';
+        
+        case 100:
+          return 'IE:E';
+        case 120:
+          return 'G:F';
+        case 140:
+          return 'H:G';
+        case 160:
+          return 'IE:G';
+        case 180:
+          return 'W:W:S';
+        
+      }
+    };
+ 
+ let xCount = 0;
+    while (xCount < 9) {
+        let yCount = 0;
+        while(yCount < 9) {
+          data1[xCount*9+yCount]= {
+            x: xCount*20+10,
+            y: yCount*20+10,
+            correlation: counts[xCount*9+yCount]
+          }
+            sectors[sector] = {
+                count: counts[xCount*9+yCount],
+                x1: xCount*20,
+                x2: xCount*20 + sectorWidth,
+                y1: yCount*20,
+                y2: yCount*20 + sectorHeight
+            };
+            yCount += 1;
+            sector++;
+        }
+        xCount += 1;
+        sector++;
+      }
 
   return (
     <Box sx={{ display: "flex", height: "100%" }}>
+
+      {/* Sub-Sidebar layout */}
       <Drawer variant="permanent" open={open} sx={{ height: 1000 }}>
         <Toolbar
           sx={{
@@ -807,13 +827,45 @@ export default function MachineLearningPage() {
             ) : (
               <KeyboardDoubleArrowRightIcon />
             )}
-            {/* <KeyboardDoubleArrowLeftIcon /> */}
           </IconButton>
         </Toolbar>
+
         <Divider />
-        <List component="nav">{fourthListItems}</List>
+
+        {/* Sub-bar Navigations */}
+        <List component="nav">
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Relation Discovery" />
+            </ButtonBase>
+          </ListItemButton>
+
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML/Recommendation" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Recommendation" />
+            </ButtonBase>
+          </ListItemButton>
+
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML/GraphModel" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Graph Model" />
+            </ButtonBase>
+          </ListItemButton>
+        </List>
       </Drawer>
+
+      {/* Main space of page*/}
       <Box>
+        {/* Title */}
         <Box sx={{ width: "100%" }}>
           <Typography
             component="h1"
@@ -841,70 +893,15 @@ export default function MachineLearningPage() {
             noWrap
             sx={{ flexGrow: 1, ml: 8, mt: 3 }}
           >
-            Click here to check your environment data
+            Select your dataset and run the model
           </Typography>
         </Box>
-        {/* <Box sx={{ width: "100%", display: "flex" }}>
-          <FormControl sx={{ ml: 8, minWidth: 200 }} variant= "standard">
-            {examples2?.map((row) => (
-            <Select native defaultValue="" id="grouped-native-select" label="Select feature1" disableUnderline startAdornment={
-                <InputAdornment position="start">
-                  <LabelIcon style={{ color: "#00bcd4"}}/>
-                </InputAdornment>
-              }
-              style={{
-                borderRadius: 25,
-                backgroundColor: "#031c4a",
-                padding: "6px 15px",
-            }}
-            value={value1}
-            onChange={(e) => {setValue1(e.target.value)}}>
-              <option aria-label="None" value="">Select feature1</option>
-                <option value={row.data.id}>{row.data.id}</option>
-            </Select>
-            ))}
-          </FormControl>
-          <FormControl sx={{ ml: 3, minWidth: 200 }} variant= "standard">
-          {examples3?.map((row) => (
-            <Select native defaultValue="" id="grouped-native-select" label="Select feature1" disableUnderline startAdornment={
-                <InputAdornment position="start">
-                  <LabelIcon style={{ color: "#00bcd4"}}/>
-                </InputAdornment>
-              }
-              style={{
-                borderRadius: 25,
-                backgroundColor: "#031c4a",
-                padding: "6px 15px",
-            }}
-            value={value2}
-            onChange={(e) => {setValue2(e.target.value)}}>
-              <option aria-label="None" value="">Select feature2</option>
-                <option value={row.data.id}>{row.data.id}</option>
-            </Select>
-            ))}
-          </FormControl>
-          <FormControl sx={{ ml: 3, minWidth: 200 }} variant= "standard">
-            {examples4?.map((row) => (
-              <Select native defaultValue="" id="grouped-native-select" label="Select feature1" disableUnderline startAdornment={
-                  <InputAdornment position="start">
-                    <LabelIcon style={{ color: "#00bcd4"}}/>
-                  </InputAdornment>
-                }
-                style={{
-                  borderRadius: 25,
-                  backgroundColor: "#031c4a",
-                  padding: "6px 15px",
-              }}
-              value={value3}
-              onChange={(e) => {setValue3(e.target.value)}}>
-                <option aria-label="None" value="">Select feature3</option>
-                  <option value={row.data.id}>{row.data.id}</option>
-              </Select>
-              ))}
-          </FormControl>
-        </Box> */}
+        
+        {/* Sub-function for demo, simple animation with static data, contains table */}
         <ShowFiles />
+
         <Box>
+            {/* Confirm button and the content hidden */}
             <Button
               variant="contained"
               color="primary"
@@ -915,7 +912,7 @@ export default function MachineLearningPage() {
               Confirm
             </Button>
             {show && 
-            <Box sx={{ mt: 3, ml: 8,}}>
+            <Box sx={{ mt: 3, ml: 8 }}>
               <Typography
                 component="h1"
                 variant="subtitle1"
@@ -925,23 +922,81 @@ export default function MachineLearningPage() {
               >
                 Analysis results:
               </Typography>
-              <ScatterChart
-                width={400}
-                height={400}
-                margin={{
-                  top: 20,
-                  right: 20,
-                  bottom: 20,
-                  left: 20
-                }}
-              >
-              <XAxis type="number" dataKey="x" />
-              <YAxis type="number" dataKey="y" />
-              <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-              <Legend />
-              <Scatter name="cluster1" data={data01} fill="#8884d8" label={<CustomizedLabel />}/>
-              <Scatter name="cluster2" data={data02} fill="#82ca9d" label={<CustomizedLabel />}/>
-              </ScatterChart>
+
+              {/* Charts */}
+              <Box sx={{ display: "flex" }}>
+                <ScatterChart
+                  width={400}
+                  height={400}
+                  margin={{
+                    top: 20,
+                    right: 20,
+                    bottom: 20,
+                    left: 20
+                  }}
+                >
+                  <XAxis type="number" dataKey="x" />
+                  <YAxis type="number" dataKey="y" />
+                  <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                  <Legend />
+                  <Scatter name="cluster1" data={data01} fill="#8884d8" label={<CustomizedLabel />}/>
+                  <Scatter name="cluster2" data={data02} fill="#82ca9d" label={<CustomizedLabel />}/>
+                </ScatterChart>
+
+                <Box sx={{ m: 8 }} />
+
+                <ScatterChart
+                  width={350}
+                  height={350}
+                  margin={{
+                    top: 20,
+                    right: 20,
+                    bottom: 20,
+                    left: 20
+                  }}
+                >
+                {
+                sectors.map((sector, index) => (
+                            <ReferenceArea 
+                                key={index}
+                                x1={sector.x1}
+                                x2={sector.x2}
+                                y1={sector.y1}
+                                y2={sector.y2} 
+                                fill="green"
+                                fillOpacity={(sector.count)}
+                                stroke="white"
+                                strokeOpacity={0}
+                            />
+                        ))
+                    }
+
+                    <CartesianGrid />
+                    <XAxis type="number" dataKey="x"  domain={[0,180]}
+                    tickCount={10}  tickFormatter={formatx} angle= {-315} 
+                    tickSize={0} height={10} tick={{ fontSize: 16, fill: 'purple' }} interval={0}/>
+                    <YAxis type="number" dataKey="y"  domain={[0,180]} angle= {-315} 
+                    tickCount={10} tickSize={0} width={10} tick={{ fontSize: 16, fill: 'purple' }}
+                    interval={0} tickFormatter={formatx} />
+                    <ZAxis type="number" dataKey="correlation"/>
+                    <Scatter data={data1} fill={"#FFFFFF"}/>
+
+                    <Tooltip />
+
+                    <ReferenceArea /> 
+                </ScatterChart>
+
+                {/* Sample text */}
+                <Box>
+                  <Typography variant="subtitle1" noWrap sx={{ flexGrow: 1, ml: 5, mt: 3 }}>short conclusion:</Typography>
+                  <Typography variant="subtitle1" noWrap sx={{ flexGrow: 1, ml: 5, mt: 3 }}>● InteriorLights:Electricity</Typography>
+                  <Typography variant="subtitle1" noWrap sx={{ flexGrow: 1, ml: 5, mt: 3 }}>● Electricity:Facility</Typography>
+                  <Typography variant="subtitle1" noWrap sx={{ flexGrow: 1, ml: 5, mt: 3 }}>● InteriorEquipment:Electricity</Typography>
+                  <Typography variant="subtitle1" noWrap sx={{ flexGrow: 1, ml: 5, mt: 3 }}>They are highly correlated</Typography>
+                </Box>
+              </Box>
+
+              {/* Navigation button */}
               <Box sx={{ minHeight: 50 }}>
                 <Link href="Output" underline="hover">
                   {'See Final Solutions'}
@@ -989,37 +1044,52 @@ function ShowFiles() {
     }
   };
 
+
+  /* Firestore SDK queries */
+  const [dataset, setDataset] = React.useState();
+  const [assets, setAssets] = useState([])
+
+  useEffect(() => {
+    const assetQuery = query(
+      collection(firestore, 'assets'),
+    );
+      const unsubscribe = onSnapshot(assetQuery, snapshot => {
+        setAssets(snapshot.docs.map(doc => ({id: doc.id, data: doc.data() })))
+      })
+
+      return () => {
+        unsubscribe()
+      }
+    }, [])
+
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      {/* <Box sx={{ m: 1, position: 'relative' }}>
-        <Fab
-          aria-label="save"
-          color="primary"
-          sx={buttonSx}
-          onClick={handleButtonClick}
-        >
-          {success ? <CheckIcon /> : <SaveIcon />}
-        </Fab>
-        {loading && (
-          <CircularProgress
-            size={68}
-            sx={{
-              color: green[500],
-              position: 'absolute',
-              top: -6,
-              left: -6,
-              zIndex: 1,
-            }}
-          />
-        )}
-      </Box> */}
       <Box sx={{ position: 'relative' }}>
+
+        {/* Droplist */}
+        <FormControl sx={{ ml: 8, minWidth: 200 }} variant= "standard">
+                <Select native defaultValue="" id="grouped-native-select" label="Select Building" disableUnderline
+                  style={{
+                    borderRadius: 25,
+                    backgroundColor: "#031c4a",
+                    padding: "6px 15px",
+                  }}
+                  value={dataset}
+                  onChange={(e) => {setDataset(e.target.value)}}
+                >
+                  <option aria-label="None" value="">Select Portfolio</option>
+                  {assets?.map((row) => (
+                    <option value={row.data.building}>{row.data.building}</option>
+                  ))}
+                </Select>
+        </FormControl>
+
         <Button
           variant="contained"
           sx={buttonSx}
           disabled={loading}
           onClick={handleButtonClick}
-          sx={{ ml: 8 }}
+          sx={{ ml: 3, mt: 0.5 }}
         >
           Read Data
         </Button>
@@ -1036,6 +1106,8 @@ function ShowFiles() {
             }}
           />
         )}
+
+        {/* Hidden table */}
         <Box>
           <TableContainer component={Paper} sx={{ mt: 2, ml: 8 }}>
             <Table
@@ -1058,6 +1130,7 @@ function ShowFiles() {
                   <TableCell align="right">Water Heater:WaterSystems:Gas [kW](Hourly)</TableCell>
                 </TableRow>
               </TableHead>
+
               <TableBody>
                 {data?.map((row) => (
                   <TableRow

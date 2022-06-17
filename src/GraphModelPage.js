@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -9,18 +9,18 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 import Typography from "@mui/material/Typography";
-import { fourthListItems } from "./listItems";
-// import { forML } from "./Selects";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl, { useFormControl } from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
+import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
+import ButtonBase from '@mui/material/ButtonBase';
 import Select from '@mui/material/Select';
-// import { Link } from 'react-router-dom'
 import Link from '@mui/material/Link';
 import InputLabel from '@mui/material/InputLabel';
-import { ScatterChart, XAxis, YAxis, ZAxis, Tooltip, Scatter, Legend, CartesianGrid, LabelList } from 'recharts';
+import { ScatterChart, XAxis, YAxis, Tooltip, Scatter, Legend, CartesianGrid } from 'recharts';
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -50,6 +50,8 @@ const Drawer = styled(MuiDrawer, {
 
 const drawerWidth = 220;
 
+
+// Main function of this page
 export default function GraphModelPage() {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -97,6 +99,8 @@ export default function GraphModelPage() {
 
   return (
     <Box sx={{ display: "flex", height: "100%" }}>
+
+      {/* Sub-Sidebar layout */}
       <Drawer variant="permanent" open={open} sx={{ height: 1000 }}>
         <Toolbar
           sx={{
@@ -115,10 +119,43 @@ export default function GraphModelPage() {
             )}
           </IconButton>
         </Toolbar>
+
         <Divider />
-        <List component="nav">{fourthListItems}</List>
+
+        {/* Sub-bar Navigations */}
+        <List component="nav">
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Relation Discovery" />
+            </ButtonBase>
+          </ListItemButton>
+
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML/Recommendation" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Recommendation" />
+            </ButtonBase>
+          </ListItemButton>
+
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML/GraphModel" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Graph Model" />
+            </ButtonBase>
+          </ListItemButton>
+        </List>
       </Drawer>
+
+      {/* Main space of page*/}
       <Box>
+        {/* Title */}
         <Box sx={{ width: "100%" }}>
           <Typography
             component="h1"
@@ -139,6 +176,8 @@ export default function GraphModelPage() {
             Graph Model
           </Typography>
         </Box>
+
+        {/* Droplists */}
         <Box sx={{ mt: 1, ml: 8, mb: 2, display: "flex" }}>
           <FormControl sx={{ minWidth: 100 }} variant= "standard">
             <InputLabel htmlFor="source">Source</InputLabel>
@@ -147,7 +186,7 @@ export default function GraphModelPage() {
                 borderRadius: 25,
                 backgroundColor: "#031c4a",
                 padding: "6px 15px",
-            }}>
+              }}>
                 <option value={"g"}>g</option>
                 <option value={"f"}>f</option>
             </Select>
@@ -159,12 +198,14 @@ export default function GraphModelPage() {
                 borderRadius: 25,
                 backgroundColor: "#031c4a",
                 padding: "6px 15px",
-            }}>
+              }}>
                 <option value={"f"}>f</option>
                 <option value={"g"}>g</option>
             </Select>
           </FormControl>
         </Box>
+
+        {/* Read button and hidden chart */}
         <Box>
             <Button
                 variant="contained"
@@ -172,7 +213,7 @@ export default function GraphModelPage() {
                 sx={{ ml: 8, borderRadius: 5 }}
                 position="absolute"
                 onClick={() => setShow2(prev => !prev)}
-                >
+            >
                 Read Data
             </Button>
             {show2 && 
@@ -187,41 +228,43 @@ export default function GraphModelPage() {
                         left: 20
                     }}
                 >
-                <XAxis type="number" dataKey="x" name="x coordinate" />
-                <YAxis type="number" dataKey="y" name="y coordinate" />
-                <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-                <Scatter
-                    name=" "
-                    data={data04}
-                    fill="#8884d8"
-                    shape="cross"
-                    label={<CustomizedLabel />}
-                />
-                <Scatter
-                    name=" "
-                    data={data02}
-                    fill="#82ca9d"
-                    shape="diamond"
-                    label={<CustomizedLabel />}
-                />
-                <Scatter
-                    name=" "
-                    data={data03}
-                    fill="#82ca9d"
-                    shape="diamond"
-                    label={<CustomizedLabel />}
-                />
-                <Scatter
-                    name=" "
-                    data={data01}
-                    fill="#82ca9d"
-                    shape="diamond"
-                    label={<CustomizedLabel />}
-                />
+                  <XAxis type="number" dataKey="x" name="x coordinate" />
+                  <YAxis type="number" dataKey="y" name="y coordinate" />
+                  <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                  <Scatter
+                      name=" "
+                      data={data04}
+                      fill="#8884d8"
+                      shape="cross"
+                      label={<CustomizedLabel />}
+                  />
+                  <Scatter
+                      name=" "
+                      data={data02}
+                      fill="#82ca9d"
+                      shape="diamond"
+                      label={<CustomizedLabel />}
+                  />
+                  <Scatter
+                      name=" "
+                      data={data03}
+                      fill="#82ca9d"
+                      shape="diamond"
+                      label={<CustomizedLabel />}
+                  />
+                  <Scatter
+                      name=" "
+                      data={data01}
+                      fill="#82ca9d"
+                      shape="diamond"
+                      label={<CustomizedLabel />}
+                  />
                 </ScatterChart>
             </Box>
             }
         </Box>
+
+        {/* Confirm button and hidden chart */}
         <Box>
             <Button
               variant="contained"
@@ -243,6 +286,7 @@ export default function GraphModelPage() {
               >
                 Analysis results:
               </Typography>
+
                 <ScatterChart
                     width={500}
                     height={400}
@@ -252,7 +296,7 @@ export default function GraphModelPage() {
                         bottom: 20,
                         left: 20
                     }}
-                    >
+                >
                     <CartesianGrid />
                     <XAxis type="number" dataKey="x" name="x coordinate" />
                     <YAxis type="number" dataKey="y" name="y coordinate" />
@@ -291,7 +335,9 @@ export default function GraphModelPage() {
                         label={<CustomizedLabel />}
                     />
                     
-                    </ScatterChart>
+                </ScatterChart>
+
+              {/* Navigation button */}
               <Box sx={{ minHeight: 50 }}>
                 <Link href="/Dashboard/Output/GraphModel" underline="hover">
                   {'See Final Solutions'}

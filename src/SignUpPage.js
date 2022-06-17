@@ -10,11 +10,12 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import axios from "axios";
 import { useState } from "react";
 
+// Customize the theme/style
 const mdTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -87,6 +88,8 @@ export default function SignUpPage() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
+
+        {/* Text fields */}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             onChange ={(e) => setEmail(e.target.value)}
@@ -124,6 +127,7 @@ export default function SignUpPage() {
           >
             Sign Up
           </Button>
+
           <Grid container>
             <Grid item>
               <Link href="/" variant="body2">
@@ -131,6 +135,7 @@ export default function SignUpPage() {
               </Link>
             </Grid>
           </Grid>
+        
         </Box>
       </Box>
     </Container>

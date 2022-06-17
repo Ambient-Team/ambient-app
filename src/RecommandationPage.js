@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -9,11 +9,12 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 import Typography from "@mui/material/Typography";
-import { fourthListItems } from "./listItems";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl, { useFormControl } from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
+import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -23,14 +24,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Select from '@mui/material/Select';
-import InputAdornment from '@mui/material/InputAdornment';
-import LabelIcon from '@mui/icons-material/Label';
 import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
 import { green } from '@mui/material/colors';
-import Fab from '@mui/material/Fab';
-// import { Link } from 'react-router-dom'
 import Link from '@mui/material/Link';
+import ButtonBase from '@mui/material/ButtonBase';
 import {
   AreaChart,
   Area,
@@ -171,6 +169,8 @@ const rows = [
   ),
 ];
 
+
+// Main function of this page
 export default function MachineLearningPage() {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -309,6 +309,8 @@ export default function MachineLearningPage() {
   
   return (
     <Box sx={{ display: "flex", height: "100%" }}>
+
+      {/* Sub-Sidebar layout */}
       <Drawer variant="permanent" open={open} sx={{ height: 1000 }}>
         <Toolbar
           sx={{
@@ -327,10 +329,43 @@ export default function MachineLearningPage() {
             )}
           </IconButton>
         </Toolbar>
+
         <Divider />
-        <List component="nav">{fourthListItems}</List>
+
+        {/* Sub-bar Navigations */}
+        <List component="nav">
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Relation Discovery" />
+            </ButtonBase>
+          </ListItemButton>
+
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML/Recommendation" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Recommendation" />
+            </ButtonBase>
+          </ListItemButton>
+
+          <ListItemButton>
+            <ButtonBase href="/Dashboard/ML/GraphModel" fullWidth>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Graph Model" />
+            </ButtonBase>
+          </ListItemButton>
+        </List>
       </Drawer>
+
+      {/* Main space of page*/}
       <Box>
+        {/* Title */}
         <Box sx={{ width: "100%" }}>
           <Typography
             component="h1"
@@ -351,6 +386,8 @@ export default function MachineLearningPage() {
             Recommendation
           </Typography>
         </Box>
+
+        {/* Selection and text fields */}
         <Box sx={{ mt: 1, ml: 8, mb: 2, display: "flex" }}>
           <FormControl sx={{ minWidth: 200 }} variant= "standard">
             <Select native defaultValue="" id="property type" disableUnderline
@@ -358,17 +395,22 @@ export default function MachineLearningPage() {
                 borderRadius: 25,
                 backgroundColor: "#031c4a",
                 padding: "6px 15px",
-            }}>
+              }}>
                 <option value={"office"}>Office</option>
                 <option value={"business"}>Business</option>
                 <option value={"science park"}>Science park</option>
             </Select>
           </FormControl>
-          <TextField id="location" label="Location" variant="standard" defaultValue="D03 Alexandra/Commonwealth, D04 city hall/Clarke Quay" sx={{ minWidth: 400, ml: 2, mt: -1 }}/>
+
+          <TextField id="location" label="Location" variant="standard" defaultValue="D03 Alexandra/Commonwealth" sx={{ minWidth: 250, ml: 2, mt: -1 }}/>
           <TextField id="size" label="Size" variant="standard" defaultValue="3000 sqrt" sx={{ ml: 2, mt: -1 }}/>
         </Box>
+
+        {/* Sub-function for demo, simple animation with static data, contains table */}
         <ShowFiles />
+
         <Box>
+            {/* Confirm button and the content hidden */}
             <Button
               variant="contained"
               color="primary"
@@ -389,6 +431,8 @@ export default function MachineLearningPage() {
               >
                 Analysis results:
               </Typography>
+
+              {/* Charts */}
               <Box sx={{ display: "flex" }}>
                 <AreaChart
                   width={600}
@@ -428,6 +472,8 @@ export default function MachineLearningPage() {
                   />
                 </RadarChart>
               </Box>
+
+              {/* Navigation button */}
               <Box sx={{ minHeight: 50 }}>
                 <Link href="/Dashboard/Output/Recommendation" underline="hover">
                   {'See Final Solutions'}
@@ -480,10 +526,9 @@ function ShowFiles() {
       <Box sx={{ position: 'relative' }}>
         <Button
           variant="contained"
-          sx={buttonSx}
+          sx={buttonSx, { ml: 8 }}
           disabled={loading}
           onClick={handleButtonClick}
-          sx={{ ml: 8 }}
         >
           Read Data
         </Button>
@@ -500,6 +545,8 @@ function ShowFiles() {
             }}
           />
         )}
+
+        {/* Hidden table */}
         <Box>
           <TableContainer component={Paper} sx={{ mt: 2, ml: 8 }}>
             <Table
@@ -522,6 +569,7 @@ function ShowFiles() {
                   <TableCell align="right">Water Heater:WaterSystems:Gas [kW](Hourly)</TableCell>
                 </TableRow>
               </TableHead>
+
               <TableBody>
                 {data?.map((row) => (
                   <TableRow

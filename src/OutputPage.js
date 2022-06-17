@@ -8,8 +8,12 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import { sixthListItems } from './listItems';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -62,6 +66,8 @@ const rows = [
   createData("Electricity:Facility", "Cooling:Electricity", "Low(0.045)"),
 ]
 
+
+// Main function of this page
 export default function OutputPage() {
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
@@ -70,6 +76,7 @@ export default function OutputPage() {
 
     return (
         <Box sx={{ display: 'flex', height: '100%' }}>
+            {/* Sub-Sidebar layout */}
             <Drawer variant="permanent" open={open} sx={{ height: 1000 }}>
                 <Toolbar
                     sx={{
@@ -82,15 +89,45 @@ export default function OutputPage() {
                 >
                     <IconButton onClick={toggleDrawer} sx={{ mr: 1 }}>
                     {open ?<KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
-                    {/* <KeyboardDoubleArrowLeftIcon /> */}
                     </IconButton>
                 </Toolbar>
+
                 <Divider />
+                
+                {/* Sub-bar Navigations */}
                 <List component="nav">
-                    {sixthListItems}
+                  <ListItemButton>
+                    <ButtonBase href="/Dashboard/Output" fullWidth>
+                      <ListItemIcon>
+                        <AssignmentIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Relation Discovery" />
+                    </ButtonBase>
+                  </ListItemButton>
+
+                  <ListItemButton>
+                    <ButtonBase href="/Dashboard/Output/Recommendation" fullWidth>
+                      <ListItemIcon>
+                        <AssignmentIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Recommendation" />
+                    </ButtonBase>
+                  </ListItemButton>
+
+                  <ListItemButton>
+                    <ButtonBase href="/Dashboard/Output/GraphModel" fullWidth>
+                      <ListItemIcon>
+                        <AssignmentIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Graph Model" />
+                    </ButtonBase>
+                  </ListItemButton>
                 </List>
             </Drawer>
+
+            {/* Main space of page*/}
             <Box>
+                {/* Title */}
                 <Box sx={{ width: '100%' }}>
                     <Typography
                         component="h1"
@@ -98,17 +135,18 @@ export default function OutputPage() {
                         color="inherit"
                         noWrap
                         sx={{ flexGrow: 1, mt: 3, ml: 8 }}
-                        >
-                        Ambient / Output / Relation Discovery
+                    >
+                      Ambient / Output / Relation Discovery
                     </Typography>
+
                     <Typography
                         component="h1"
                         variant="h4"
                         color="inherit"
                         noWrap
                         sx={{ flexGrow: 1, ml: 8, mb: 2 }}
-                        >
-                        Relations
+                    >
+                      Relations
                     </Typography>
 
                     <Typography
@@ -121,6 +159,8 @@ export default function OutputPage() {
                       Results:
                     </Typography>
                 </Box>
+
+                {/* Rank table */}
                 <Box sx={{ mt: 1, ml: 8 }}>
                   <Table
                     sx={{ minWidth: 650 }}
@@ -134,6 +174,7 @@ export default function OutputPage() {
                         <TableCell align="right">Level/Score</TableCell>
                       </TableRow>
                     </TableHead>
+
                     <TableBody>
                       {rows?.map((row) => (
                         <TableRow
@@ -149,25 +190,6 @@ export default function OutputPage() {
                       ))}
                     </TableBody>
                   </Table>
-                </Box>
-
-                <Box>
-                  <div id="output"></div>
-                    {/* <py-script output="output">
-import pandas as pd;
-import matplotlib.pyplot as plt;
-import numpy as np;
-
-data = pd.read_csv('data.csv');
-
-data = data.drop(['Heating:Electricity [kW](Hourly)'],axis=1);
-
-data = data.drop(['Date/Time'], axis=1);
-
-fig, ax = plt.subplots();
-ax.boxplot(data);
-fig
-                    </py-script> */}
                 </Box>
             </Box>
         </Box>

@@ -14,9 +14,11 @@ import Container from "@mui/material/Container";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
+
+// Customize the theme/style
 const mdTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -40,6 +42,7 @@ export default function SignInPage() {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+
   useEffect(() => {
   const token =  window.localStorage.getItem('access_token');
   if(token) navigate("/Dashboard");
@@ -89,6 +92,8 @@ export default function SignInPage() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+
+        {/* Text fields */}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
@@ -127,6 +132,7 @@ export default function SignInPage() {
           >
             Sign In
           </Button>
+
           <Grid container>
             <Grid item>
               <Link href="SignUp" variant="body2">
@@ -134,6 +140,7 @@ export default function SignInPage() {
               </Link>
             </Grid>
           </Grid>
+
         </Box>
       </Box>
     </Container>

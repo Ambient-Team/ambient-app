@@ -1,4 +1,4 @@
-import Logo from './Logo_White-03.svg'; 
+import Logo from './pics/Logo_White-03.svg'; 
 import * as React from 'react';
 import Box from '@mui/material/Box';
 

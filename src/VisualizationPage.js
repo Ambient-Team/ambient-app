@@ -9,15 +9,18 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import { thirdListItems } from './listItems';
-import { AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Area, PieChart, Pie, BarChart, Bar, Legend } from 'recharts';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import { AreaChart, XAxis, YAxis, Tooltip, Area, PieChart, Pie, BarChart, Bar, Legend } from 'recharts';
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import { Sankey, RadialBarChart, RadialBar } from 'recharts';
-import Paper from '@mui/material/Paper';
 import { useState, useEffect } from "react";
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, addDoc, getDoc, setDoc, collection, onSnapshot, query, where, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
 
+// Connect to current firebase project
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyBamRPS6NxxPg7lplFrxZd36fLWg9ZUTDY",
   authDomain: "ambient-systems.firebaseapp.com",
@@ -55,7 +58,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   );
 
-const drawerWidth = 200;
+const drawerWidth = 220;
 
 function createData(id, name, request, token) {
   return {
@@ -66,6 +69,8 @@ function createData(id, name, request, token) {
   };
 }
 
+
+// Main function of this page
 export default function VisualizationPage() {
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
@@ -74,6 +79,7 @@ export default function VisualizationPage() {
 
     const [examples, setExamples] = useState([])
 
+    /* Firestore SDK queries */
     useEffect(() => {
       const exampleCollectionRef = collection(firestore, 'Test')
       const unsubscribe = onSnapshot(exampleCollectionRef, snapshot => {
@@ -90,6 +96,7 @@ export default function VisualizationPage() {
           rows.push(createData(row.data.id, row.data.name, row.data.request, row.data.token))
     })
 
+    // Data for different charts
     const data0 = {
         "nodes": [
           {
@@ -354,6 +361,7 @@ export default function VisualizationPage() {
 
     return (
         <Box sx={{ display: 'flex', height: '100%' }}>
+          {/* Sub-Sidebar layout */}
             <Drawer variant="permanent" open={open} sx={{ height: 1000 }}>
                 <Toolbar
                     sx={{
@@ -365,16 +373,40 @@ export default function VisualizationPage() {
                     }}
                 >
                     <IconButton onClick={toggleDrawer} sx={{ mr: 1 }}>
-                    {open ?<KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
-                    {/* <KeyboardDoubleArrowLeftIcon /> */}
+                      {open ?<KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
                     </IconButton>
                 </Toolbar>
+
                 <Divider />
+
+                {/* Sub-bar Navigations */}
                 <List component="nav">
-                    {thirdListItems}
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <AssignmentIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
+                  </ListItemButton>
+
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <AssignmentIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="TBD" />
+                  </ListItemButton>
+
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <AssignmentIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="TBD" />
+                  </ListItemButton>
                 </List>
             </Drawer>    
+            
+            {/* Main space of page*/}
             <Box>
+                {/* Title */}
                 <Box sx={{ width: '100%' }}>
                     <Typography
                         component="h1"
@@ -382,19 +414,23 @@ export default function VisualizationPage() {
                         color="inherit"
                         noWrap
                         sx={{ flexGrow: 1, mt: 3, ml: 8 }}
-                        >
+                    >
                         Ambient / Data Visualization / Dashboard
                     </Typography>
+
                     <Typography
                         component="h1"
                         variant="h4"
                         color="inherit"
                         noWrap
                         sx={{ flexGrow: 1, ml: 8, mb: 2 }}
-                        >
+                    >
                         Dashboard
                     </Typography>
                 </Box>
+
+                {/* Sample charts */}
+                {/* First row */}
                 <Box sx={{ width: '100%', display: 'flex' }}>
                     <AreaChart width={800} height={250} data={data1}
                         margin={{ top: 10, right: 30, left: 50, bottom: 10 }}>
@@ -410,7 +446,6 @@ export default function VisualizationPage() {
                         </defs>
                         <XAxis dataKey="name" />
                         <YAxis />
-                        {/* <CartesianGrid strokeDasharray="3 3" /> */}
                         <Tooltip />
                         <Area type="monotone" dataKey="Electricity:Facility" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
                         <Area type="monotone" dataKey="Fans:Electricity" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
@@ -421,10 +456,11 @@ export default function VisualizationPage() {
                         <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
                     </PieChart>
                 </Box>
+
+                {/* Second row */}
                 <Box sx={{ width: '100%', display: 'flex' }}>
                     <BarChart width={800} height={250} data={data2}
                         margin={{ top: 10, right: 30, left: 50, bottom: 10 }}>
-                        {/* <CartesianGrid strokeDasharray="3 3" /> */}
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
@@ -442,6 +478,8 @@ export default function VisualizationPage() {
                         <Legend />
                     </RadarChart>
                 </Box>
+
+                {/* Third row */}
                 <Box sx={{ width: '100%', display: 'flex' }}>
                     <Sankey
                         width={800}
@@ -456,7 +494,7 @@ export default function VisualizationPage() {
                             bottom: 10,
                         }}
                         link={{ stroke: '#fff' }}
-                        >
+                    >
                         <Tooltip />
                     </Sankey>
 
@@ -468,7 +506,7 @@ export default function VisualizationPage() {
                         data={data4} 
                         startAngle={180} 
                         endAngle={-180}
-                        >
+                    >
                         <RadialBar minAngle={15} label={{ fill: '#666', position: 'insideStart' }} background clockWise={true} dataKey='InteriorLights:Electricity' />
                         <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' align="right" />
                         <Tooltip />

@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-// import App from './App';
-import Dashboard from './Dashboard';
-import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
+import Dashboard from './Dashboard';
 import SignUpPage from './SignUpPage';
 import SignInPage from './SignInPage';
 import OnboardPage from './OnboardPage';
 import GoalPage from './GoalPage';
-import OverviewPage from './firstpage';
-import EngineeringPage from './samplepage';
+import OverviewPage from './OverviewPage';
+import EngineeringPage from './EngineeringPage';
 import MachineLearningPage from './MachineLearningPage';
 import OutputPage from './OutputPage';
 import ProfilePage from './ProfilePage';
@@ -23,7 +20,6 @@ import RecommendationPage from './RecommandationPage';
 import GraphModelPage from './GraphModelPage';
 import RecommendationOutput from './RecommandationOutput';
 import GraphModelOutput from './GraphModelOutput';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -51,8 +47,3 @@ root.render(
           </Router>      
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

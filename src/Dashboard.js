@@ -6,67 +6,36 @@ import Box from '@mui/material/Box';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-// import Link from '@mui/material/Link';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import MailIcon from '@mui/icons-material/Mail';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import ListItemButton from '@mui/material/ListItemButton';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PersonIcon from '@mui/icons-material/Person';
+import StorageIcon from '@mui/icons-material/Storage';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import FolderIcon from '@mui/icons-material/Folder';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import ButtonBase from '@mui/material/ButtonBase';
-import { mainListItems } from './listItems';
-import Logo from './Logo_White-01.svg'; 
-// import Deposits from './Deposits';
-// import Orders from './Order';
-import OnboardPage from './OnboardPage';
-import OverviewPage from './firstpage';
+import Logo from './pics/Logo_White-01.svg'; 
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
   useNavigate,
    Outlet
 } from "react-router-dom";
-import GoalPage from './GoalPage'
-import EngineeringPage from './samplepage';
-import VisualizationPage from './VisualizationPage';
-import MachineLearningPage from './MachineLearningPage'
-import OutputPage from './OutputPage'
-import ProfilePage from './ProfilePage'
-import SignInPage from './SignInPage'
-import SignUpPage from './SignUpPage'
 import { useEffect } from 'react';
-
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -108,7 +77,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const drawerWidth = 210;
+const drawerWidth = 220;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -173,21 +142,18 @@ const mdTheme = createTheme({
   },
 });
 
+
+// Main function of this page
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
   const [anchorEl3, setAnchorEl3] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMenuOpen2 = Boolean(anchorEl2);
   const isMenuOpen3 = Boolean(anchorEl3);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -199,53 +165,57 @@ function DashboardContent() {
     setAnchorEl3(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
   };
   const handleMenuClose2 = () => {
     setAnchorEl2(null);
-    handleMobileMenuClose();
   };
   const handleMenuClose3 = () => {
     setAnchorEl3(null);
-    handleMobileMenuClose();
   };
   const handleSignOut = () => {
     window.localStorage.removeItem('access_token');
     window.location.reload();
   }
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
+  
+  /* Droplists of head bar buttons */
+  /* Droplist of Message/First button */
+  const renderMessageMenu = (
     <Menu
-      anchorEl={anchorEl}
+      anchorEl={anchorEl3}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
       }}
-      id={menuId}
       keepMounted
       transformOrigin={{
         vertical: 'top',
         horizontal: 'right',
       }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
+      open={isMenuOpen3}
+      onClose={handleMenuClose3}
     >
-      <MenuItem onClick={handleMenuClose}><ButtonBase href='Profile'>Profile</ButtonBase></MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
+      <MenuItem onClick={handleMenuClose3}>
+        <ListItemIcon>
+          <NotificationsIcon fontSize="small"/>
+        </ListItemIcon>
+        <ListItemText>
+          Placeholder ... 
+        </ListItemText>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose3}>
+        <ListItemIcon>
+          <NotificationsIcon fontSize="small"/>
+        </ListItemIcon>
+        <ListItemText>
+          Placeholder ... 
+        </ListItemText>
+      </MenuItem>
     </Menu>
   );
+
+  /* Droplist of Information/Second button */
   const renderInfoMenu = (
     <Menu
       anchorEl={anchorEl2}
@@ -253,7 +223,6 @@ function DashboardContent() {
         vertical: 'top',
         horizontal: 'right',
       }}
-      id={menuId}
       keepMounted
       transformOrigin={{
         vertical: 'top',
@@ -288,97 +257,37 @@ function DashboardContent() {
       </MenuItem>
     </Menu>
   );
-  const renderMessageMenu = (
+  
+  /* Droplist of Profile/Third button */
+  const renderMenu = (
     <Menu
-      anchorEl={anchorEl3}
+      anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
       }}
-      id={menuId}
       keepMounted
       transformOrigin={{
         vertical: 'top',
         horizontal: 'right',
       }}
-      open={isMenuOpen3}
-      onClose={handleMenuClose3}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose3}>
-        <ListItemIcon>
-          <NotificationsIcon fontSize="small"/>
-        </ListItemIcon>
-        <ListItemText>
-          Placeholder ... 
-        </ListItemText>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose3}>
-        <ListItemIcon>
-          <NotificationsIcon fontSize="small"/>
-        </ListItemIcon>
-        <ListItemText>
-          Placeholder ... 
-        </ListItemText>
-      </MenuItem>
+      <MenuItem onClick={handleMenuClose}><ButtonBase href='Profile'>Profile</ButtonBase></MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem onClick={handleMessageMenuOpen}>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem onClick={handleInfoMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="show 3 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={3} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+
 
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
+
+        {/* Head bar layout */}
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
@@ -386,27 +295,8 @@ function DashboardContent() {
               backgroundColor: '#031c4a',
             }}
           >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              sx={{
-                marginRight: '36px',
-                ...(open && { display: 'none' }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            {/* <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Dashboard
-            </Typography> */}
+
+            {/* Search bar */}
             <Search sx={{flexGrow: 0, borderRadius: 25 }}>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -416,18 +306,19 @@ function DashboardContent() {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
-            {/* <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
+
+            {/* Placeholder */}
             <Box sx={{ flexGrow: 1 }} />
+
+            {/* Three functional buttons */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              {/* Message/First button */}
               <IconButton size="large" aria-label="show 2 new mails" color="inherit" onClick={handleMessageMenuOpen}>
                 <Badge badgeContent={2} color="info">
                   <NotificationsOutlinedIcon />
                 </Badge>
               </IconButton>
+              {/* Information/Second button */}
               <IconButton
                 size="large"
                 aria-label="show 3 new notifications"
@@ -438,11 +329,11 @@ function DashboardContent() {
                   <InfoOutlinedIcon />
                 </Badge>
               </IconButton>
+              {/* Profile/Third button */}
               <IconButton
                 size="large"
                 edge="end"
                 aria-label="account of current user"
-                aria-controls={mobileMenuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
                 color="inherit"
@@ -450,25 +341,15 @@ function DashboardContent() {
                 <AccountCircleOutlinedIcon />
               </IconButton>
             </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
           </Toolbar>
         </AppBar>
-        {renderMobileMenu}
-        {renderMenu}
         {renderInfoMenu}
         {renderMessageMenu}
+        {renderMenu}
+
+        {/* Side bar layout */}
         <Drawer variant="permanent" open={open}>
+          {/* Logo at the top left cornor */}
           <Toolbar
             sx={{
               display: 'flex',
@@ -478,20 +359,88 @@ function DashboardContent() {
               height: 130
             }}
           >
-          <ButtonBase href='/' fullWidth>
-            <img src={Logo} alt="Logo" width={180} height={75}/>
-          </ButtonBase>
-            {/* <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton> */}
+            <ButtonBase href='/' fullWidth>
+              <img src={Logo} alt="Logo" width={180} height={75}/>
+            </ButtonBase>
           </Toolbar>
           <Divider />
+
+          {/* Navigations to different pages */}
           <List component="nav">
-            {mainListItems}
-            {/* <Divider sx={{ my: 1 }} />
-            {secondaryListItems} */}
+            {/* Overview */}
+            <ListItemButton>
+              <ButtonBase href="/Dashboard/Overview" fullWidth>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Overview" />
+              </ButtonBase>
+            </ListItemButton>
+
+            {/* Goals */}
+            <ListItemButton>
+              <ButtonBase  href="/Dashboard/Goal" fullWidth>
+                <ListItemIcon>
+                  <TrackChangesIcon />
+                </ListItemIcon>
+                <ListItemText primary="Goals" />
+              </ButtonBase>
+            </ListItemButton>
+
+            {/* Data Engineering */}
+            <ListItemButton>
+              <ButtonBase href="/Dashboard/Engineering" fullWidth>
+                <ListItemIcon>
+                  <StorageIcon />
+                </ListItemIcon>
+                <ListItemText primary="Data Engineering" />
+              </ButtonBase>
+            </ListItemButton>
+
+            {/* Data Visualization */}
+            <ListItemButton>
+              <ButtonBase href="/Dashboard/Visualization" fullWidth>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Data Visualization" />
+              </ButtonBase>
+            </ListItemButton>
+
+            {/* Machine Learning */}
+            <ListItemButton>
+              <ButtonBase href="/Dashboard/ML" fullWidth>
+                <ListItemIcon>
+                  <AccountTreeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Machine Learning" />
+              </ButtonBase>
+            </ListItemButton>
+            
+            {/* Output */}
+            <ListItemButton>
+              <ButtonBase href="/Dashboard/Output" fullWidth>
+                <ListItemIcon>
+                  <FolderIcon />
+                </ListItemIcon>
+                <ListItemText primary="Output" />
+              </ButtonBase>
+            </ListItemButton>
+
+            {/* Profile */}
+            <ListItemButton>
+              <ButtonBase href="/Dashboard/Profile" fullWidth>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ButtonBase>
+            </ListItemButton>
           </List>
+
         </Drawer>
+
+        {/* Main space of page, which is blank in this page */}
         <Box
           component="main"
           sx={{

@@ -66,9 +66,10 @@ export default function FormDialog() {
 
   return (
     <div>
-        <Button variant="contained" endIcon={<AddSharpIcon />} color="primary" sx={{ mt: 1, ml: 11, borderRadius: 5 }} position="absolute" onClick={handleClickOpen}>
-            Add request
-        </Button>
+      <Button variant="contained" endIcon={<AddSharpIcon />} color="primary" sx={{ mt: 1, ml: 11, borderRadius: 5 }} position="absolute" onClick={handleClickOpen}>
+          Add request
+      </Button>
+      {/* First dialog */}
       <Dialog open={open1} onClose={handleClose}>
         <DialogTitle>Request1</DialogTitle>
         <DialogContent>
@@ -76,22 +77,25 @@ export default function FormDialog() {
             Please add the request for your service.
           </DialogContentText>
           <FormControl sx={{ mt: 2, minWidth: 500, minHeight: 100 }}>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Input"
-            fullWidth
-            variant="standard"
-          />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Input"
+              fullWidth
+              variant="standard"
+            />
           </FormControl>
         </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handlePrevious1}>Previous</Button>
           <Button onClick={handleNext1}>Next</Button>
         </DialogActions>
       </Dialog>
+
+      {/* Second dialog */}
       <Dialog open={open2} onClose={handleClose}>
         <DialogTitle>Request2</DialogTitle>
         <DialogContent>
@@ -99,22 +103,25 @@ export default function FormDialog() {
             Please add the request for your service.
           </DialogContentText>
           <FormControl sx={{ mt: 2, minWidth: 500, minHeight: 100 }}>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Input"
-            fullWidth
-            variant="standard"
-          />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Input"
+              fullWidth
+              variant="standard"
+            />
           </FormControl>
         </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handlePrevious2}>Previous</Button>
           <Button onClick={handleNext2}>Next</Button>
         </DialogActions>
       </Dialog>
+
+      {/* Third dialog */}
       <Dialog open={open3} onClose={handleClose}>
         <DialogTitle>Request3</DialogTitle>
         <DialogContent>
@@ -122,22 +129,25 @@ export default function FormDialog() {
             Please add the request for your service.
           </DialogContentText>
           <FormControl sx={{ mt: 2, minWidth: 500, minHeight: 100 }}>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Input"
-            fullWidth
-            variant="standard"
-          />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Input"
+              fullWidth
+              variant="standard"
+            />
           </FormControl>
         </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handlePrevious3}>Previous</Button>
           <Button onClick={handleNext3}>Next</Button>
         </DialogActions>
       </Dialog>
+
+      {/* Forth dialog */}
       <Dialog open={open4} onClose={handleClose}>
         <DialogTitle>Request4</DialogTitle>
         <DialogContent>
@@ -145,16 +155,17 @@ export default function FormDialog() {
             Please add the request for your service.
           </DialogContentText>
           <FormControl sx={{ mt: 2, minWidth: 500, minHeight: 100 }}>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Input"
-            fullWidth
-            variant="standard"
-          />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Input"
+              fullWidth
+              variant="standard"
+            />
           </FormControl>
         </DialogContent>
+        
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handlePrevious4}>Previous</Button>
